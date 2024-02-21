@@ -21,18 +21,18 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_insights
 from finbourne_insights.rest import ApiException
 from finbourne_insights.models.request import Request
 from pprint import pprint
 
+import os
 from finbourne_insights import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    RequestsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
@@ -117,18 +117,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_insights
 from finbourne_insights.rest import ApiException
 from finbourne_insights.models.request_log import RequestLog
 from pprint import pprint
 
+import os
 from finbourne_insights import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    RequestsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
@@ -213,18 +213,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_insights
 from finbourne_insights.rest import ApiException
 from finbourne_insights.models.response import Response
 from pprint import pprint
 
+import os
 from finbourne_insights import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    RequestsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
@@ -309,18 +309,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_insights
 from finbourne_insights.rest import ApiException
 from finbourne_insights.models.resource_list_with_histogram_of_request_log import ResourceListWithHistogramOfRequestLog
 from pprint import pprint
 
+import os
 from finbourne_insights import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    RequestsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client

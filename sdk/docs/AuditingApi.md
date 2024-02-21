@@ -20,19 +20,19 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_insights
 from finbourne_insights.rest import ApiException
 from finbourne_insights.models.audit_entry import AuditEntry
 from finbourne_insights.models.create_audit_entry import CreateAuditEntry
 from pprint import pprint
 
+import os
 from finbourne_insights import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuditingApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
@@ -120,18 +120,18 @@ This will never be `null`, though it may be empty.
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_insights
 from finbourne_insights.rest import ApiException
 from finbourne_insights.models.resource_list_of_audit_process_summary import ResourceListOfAuditProcessSummary
 from pprint import pprint
 
+import os
 from finbourne_insights import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuditingApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
@@ -213,18 +213,18 @@ This will never be `null`, though it may be empty.
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_insights
 from finbourne_insights.rest import ApiException
 from finbourne_insights.models.scrollable_collection_of_audit_entry import ScrollableCollectionOfAuditEntry
 from pprint import pprint
 
+import os
 from finbourne_insights import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuditingApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client

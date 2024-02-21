@@ -19,18 +19,18 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_insights
 from finbourne_insights.rest import ApiException
 from finbourne_insights.models.access_evaluation_log import AccessEvaluationLog
 from pprint import pprint
 
+import os
 from finbourne_insights import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AccessEvaluationsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
@@ -115,18 +115,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_insights
 from finbourne_insights.rest import ApiException
 from finbourne_insights.models.resource_list_with_histogram_of_access_evaluation_log import ResourceListWithHistogramOfAccessEvaluationLog
 from pprint import pprint
 
+import os
 from finbourne_insights import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AccessEvaluationsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
