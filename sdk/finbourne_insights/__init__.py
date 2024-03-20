@@ -66,4 +66,67 @@ from finbourne_insights.models.vendor_request import VendorRequest
 from finbourne_insights.models.vendor_response import VendorResponse
 
 # import extensions into sdk package
-from finbourne_insights.extensions import *
+from finbourne_insights.extensions import (
+    SyncApiClientFactory,
+    ApiClientFactory,
+    ConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    EnvironmentVariablesConfigurationLoader,
+    ArgsConfigurationLoader,
+    SyncApiClient
+)
+
+
+__all__ = [
+    "AccessEvaluationsApi",
+    "ApplicationMetadataApi",
+    "AuditingApi",
+    "RequestsApi",
+    "VendorLogsApi",
+    "AccessControlledAction",
+    "AccessControlledResource",
+    "AccessEvaluationLog",
+    "ActionId",
+    "AuditData",
+    "AuditDataSummary",
+    "AuditEntry",
+    "AuditEntryNote",
+    "AuditProcess",
+    "AuditProcessSummary",
+    "Bucket",
+    "CreateAuditEntry",
+    "Histogram",
+    "IdSelectorDefinition",
+    "IdentifierPartSchema",
+    "Link",
+    "LusidProblemDetails",
+    "LusidValidationProblemDetails",
+    "ProblemDetails",
+    "Request",
+    "RequestLog",
+    "Resource",
+    "ResourceListOfAccessControlledResource",
+    "ResourceListOfAuditProcessSummary",
+    "ResourceListWithHistogramOfAccessEvaluationLog",
+    "ResourceListWithHistogramOfRequestLog",
+    "ResourceListWithHistogramOfVendorLog",
+    "Response",
+    "ScrollableCollectionOfAuditEntry",
+    "VendorLog",
+    "VendorRequest",
+    "VendorResponse",
+    "ApiClient",
+    "Configuration",
+    "OpenApiException",
+    "ApiTypeError",
+    "ApiValueError",
+    "ApiKeyError",
+    "ApiException",
+    "SyncApiClientFactory", 
+    "ApiClientFactory",
+    "ConfigurationLoader",
+    "SecretsFileConfigurationLoader",
+    "EnvironmentVariablesConfigurationLoader",
+    "ArgsConfigurationLoader",
+    "SyncApiClient"
+]

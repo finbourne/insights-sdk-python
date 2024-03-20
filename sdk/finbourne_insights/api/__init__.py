@@ -7,3 +7,11 @@ from finbourne_insights.api.auditing_api import AuditingApi
 from finbourne_insights.api.requests_api import RequestsApi
 from finbourne_insights.api.vendor_logs_api import VendorLogsApi
 
+
+__all__ = [
+    "AccessEvaluationsApi",
+    "ApplicationMetadataApi",
+    "AuditingApi",
+    "RequestsApi",
+    "VendorLogsApi"
+]
