@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "finbourne-insights-sdk"
-version = "2.0.12"
+version = "2.0.13"
 description = "FINBOURNE Insights API"
 authors = ["FINBOURNE Technology <info@finbourne.com>"]
 license = "MIT"
