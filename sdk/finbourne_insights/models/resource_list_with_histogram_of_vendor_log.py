@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from finbourne_insights.models.histogram import Histogram
 from finbourne_insights.models.link import Link
 from finbourne_insights.models.vendor_log import VendorLog
