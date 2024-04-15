@@ -59,7 +59,7 @@ class RequestsApi:
 
     @validate_arguments
     def get_request(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The identifier of the request to obtain the content for.")], async_req: Optional[bool]=None, **kwargs) -> Union[Request, Awaitable[Request]]:  # noqa: E501
-        """[EARLY ACCESS] GetRequest: Get the request content for a specific API request.  # noqa: E501
+        """GetRequest: Get the request content for a specific API request.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -90,7 +90,7 @@ class RequestsApi:
 
     @validate_arguments
     def get_request_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The identifier of the request to obtain the content for.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GetRequest: Get the request content for a specific API request.  # noqa: E501
+        """GetRequest: Get the request content for a specific API request.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -208,7 +208,7 @@ class RequestsApi:
 
     @validate_arguments
     def get_request_log(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The identifier of the request to obtain the log for.")], async_req: Optional[bool]=None, **kwargs) -> Union[RequestLog, Awaitable[RequestLog]]:  # noqa: E501
-        """[EARLY ACCESS] GetRequestLog: Get the log for a specific API request.  # noqa: E501
+        """GetRequestLog: Get the log for a specific API request.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -239,7 +239,7 @@ class RequestsApi:
 
     @validate_arguments
     def get_request_log_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The identifier of the request to obtain the log for.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GetRequestLog: Get the log for a specific API request.  # noqa: E501
+        """GetRequestLog: Get the log for a specific API request.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -357,7 +357,7 @@ class RequestsApi:
 
     @validate_arguments
     def get_response(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The identifier of the request to obtain the response for.")], async_req: Optional[bool]=None, **kwargs) -> Union[Response, Awaitable[Response]]:  # noqa: E501
-        """[EARLY ACCESS] GetResponse: Get the response for a specific API request.  # noqa: E501
+        """GetResponse: Get the response for a specific API request.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -388,7 +388,7 @@ class RequestsApi:
 
     @validate_arguments
     def get_response_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The identifier of the request to obtain the response for.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GetResponse: Get the response for a specific API request.  # noqa: E501
+        """GetResponse: Get the response for a specific API request.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -506,7 +506,7 @@ class RequestsApi:
 
     @validate_arguments
     def list_request_logs(self, filter : Annotated[Optional[constr(strict=True, max_length=16384, min_length=0)], Field(description="Expression to filter the result set. Read more about <see href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</see>.")] = None, sort_by : Annotated[Optional[constr(strict=True, max_length=16384, min_length=1)], Field(description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[conint(strict=True, le=10000, ge=0)], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[constr(strict=True, max_length=500, min_length=1)], Field(description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field(description="Optional interval to use in a histogram of the returned values. If not provided, no histogram will be generated.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListWithHistogramOfRequestLog, Awaitable[ResourceListWithHistogramOfRequestLog]]:  # noqa: E501
-        """[EARLY ACCESS] ListRequestLogs: Get the logs for API requests.  # noqa: E501
+        """ListRequestLogs: Get the logs for API requests.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -545,7 +545,7 @@ class RequestsApi:
 
     @validate_arguments
     def list_request_logs_with_http_info(self, filter : Annotated[Optional[constr(strict=True, max_length=16384, min_length=0)], Field(description="Expression to filter the result set. Read more about <see href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</see>.")] = None, sort_by : Annotated[Optional[constr(strict=True, max_length=16384, min_length=1)], Field(description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[conint(strict=True, le=10000, ge=0)], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[constr(strict=True, max_length=500, min_length=1)], Field(description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field(description="Optional interval to use in a histogram of the returned values. If not provided, no histogram will be generated.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] ListRequestLogs: Get the logs for API requests.  # noqa: E501
+        """ListRequestLogs: Get the logs for API requests.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
