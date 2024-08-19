@@ -24,6 +24,6 @@ scrollable_collection_of_audit_entry_dict = scrollable_collection_of_audit_entry
 # create an instance of ScrollableCollectionOfAuditEntry from a dict
 scrollable_collection_of_audit_entry_form_dict = scrollable_collection_of_audit_entry.from_dict(scrollable_collection_of_audit_entry_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

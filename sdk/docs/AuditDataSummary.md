@@ -24,6 +24,6 @@ audit_data_summary_dict = audit_data_summary_instance.to_dict()
 # create an instance of AuditDataSummary from a dict
 audit_data_summary_form_dict = audit_data_summary.from_dict(audit_data_summary_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

@@ -16,67 +16,57 @@ Method | HTTP request | Description
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_insights
-from finbourne_insights.rest import ApiException
-from finbourne_insights.models.audit_entry import AuditEntry
-from finbourne_insights.models.create_audit_entry import CreateAuditEntry
+import asyncio
+from finbourne_insights.exceptions import ApiException
+from finbourne_insights.models import *
 from pprint import pprint
-
-import os
 from finbourne_insights import (
     ApiClientFactory,
-    AuditingApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuditingApi
 )
 
-# Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "insightsUrl":"https://<your-domain>.lusid.com/insights",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/insights"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuditingApi)
 
+        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+        # Change the lines below to switch approach
+        # create_audit_entry = CreateAuditEntry()
+        # create_audit_entry = CreateAuditEntry.from_json("")
+        create_audit_entry = CreateAuditEntry.from_dict({"process":{"name":"processName","runId":"processRunId","startTime":"0001-01-01T00:00:00.0000000+00:00"},"data":{"action":"dataAction","category":"dataCategory","userId":"dataUserId","message":"dataMessage","resource":{"type":"resourceType","identifier":"resourceIdentifier"},"detailsType":"dataDetailsType"}}) # CreateAuditEntry | Information about the entry to be created. (optional)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
+        try:
+            # [EARLY ACCESS] CreateEntry: Create (persist) and audit entry..
+            api_response = await api_instance.create_entry(create_audit_entry=create_audit_entry)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuditingApi->create_entry: %s\n" % e)
 
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_insights.AuditingApi)
-    create_audit_entry = {"process":{"name":"processName","runId":"processRunId","startTime":"0001-01-01T00:00:00.0000000+00:00"},"data":{"action":"dataAction","category":"dataCategory","userId":"dataUserId","message":"dataMessage","resource":{"type":"resourceType","identifier":"resourceIdentifier"},"detailsType":"dataDetailsType"}} # CreateAuditEntry | Information about the entry to be created. (optional)
-
-    try:
-        # [EARLY ACCESS] CreateEntry: Create (persist) and audit entry..
-        api_response = await api_instance.create_entry(create_audit_entry=create_audit_entry)
-        print("The response of AuditingApi->create_entry:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuditingApi->create_entry: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -87,10 +77,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AuditEntry**](AuditEntry.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -105,7 +91,7 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **get_processes**
 > ResourceListOfAuditProcessSummary get_processes()
@@ -116,65 +102,51 @@ This will never be `null`, though it may be empty.
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_insights
-from finbourne_insights.rest import ApiException
-from finbourne_insights.models.resource_list_of_audit_process_summary import ResourceListOfAuditProcessSummary
+import asyncio
+from finbourne_insights.exceptions import ApiException
+from finbourne_insights.models import *
 from pprint import pprint
-
-import os
 from finbourne_insights import (
     ApiClientFactory,
-    AuditingApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuditingApi
 )
 
-# Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "insightsUrl":"https://<your-domain>.lusid.com/insights",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/insights"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuditingApi)
 
+        try:
+            # [EARLY ACCESS] GetProcesses: Get the latest audit entry for each process.
+            api_response = await api_instance.get_processes()
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuditingApi->get_processes: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_insights.AuditingApi)
-
-    try:
-        # [EARLY ACCESS] GetProcesses: Get the latest audit entry for each process.
-        api_response = await api_instance.get_processes()
-        print("The response of AuditingApi->get_processes:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuditingApi->get_processes: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -182,10 +154,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ResourceListOfAuditProcessSummary**](ResourceListOfAuditProcessSummary.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -198,7 +166,7 @@ This endpoint does not need any parameter.
 **200** | Success |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **list_entries**
 > ScrollableCollectionOfAuditEntry list_entries(filter=filter, sort_by=sort_by, size=size, state=state)
@@ -209,69 +177,55 @@ This will never be `null`, though it may be empty.
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_insights
-from finbourne_insights.rest import ApiException
-from finbourne_insights.models.scrollable_collection_of_audit_entry import ScrollableCollectionOfAuditEntry
+import asyncio
+from finbourne_insights.exceptions import ApiException
+from finbourne_insights.models import *
 from pprint import pprint
-
-import os
 from finbourne_insights import (
     ApiClientFactory,
-    AuditingApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuditingApi
 )
 
-# Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "insightsUrl":"https://<your-domain>.lusid.com/insights",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/insights"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuditingApi)
+        filter = 'filter_example' # str | The filter to be applied to the results. (optional)
+        sort_by = 'sort_by_example' # str | The order to return the entries in. (optional)
+        size = 1000 # int | The maximum number of entries to return. (optional) (default to 1000)
+        state = 'state_example' # str | The scrolling state, used to iterate through the data set. (optional)
 
+        try:
+            # [EARLY ACCESS] ListEntries: Get the audit entries.
+            api_response = await api_instance.list_entries(filter=filter, sort_by=sort_by, size=size, state=state)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuditingApi->list_entries: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_insights.AuditingApi)
-    filter = 'filter_example' # str | The filter to be applied to the results. (optional)
-    sort_by = 'sort_by_example' # str | The order to return the entries in. (optional)
-    size = 1000 # int | The maximum number of entries to return. (optional) (default to 1000)
-    state = 'state_example' # str | The scrolling state, used to iterate through the data set. (optional)
-
-    try:
-        # [EARLY ACCESS] ListEntries: Get the audit entries.
-        api_response = await api_instance.list_entries(filter=filter, sort_by=sort_by, size=size, state=state)
-        print("The response of AuditingApi->list_entries:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuditingApi->list_entries: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -286,10 +240,6 @@ Name | Type | Description  | Notes
 
 [**ScrollableCollectionOfAuditEntry**](ScrollableCollectionOfAuditEntry.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
@@ -302,5 +252,5 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
