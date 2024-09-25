@@ -20,6 +20,7 @@ Method | HTTP request | Description
 ```python
 import asyncio
 from finbourne_insights.exceptions import ApiException
+from finbourne_insights.extensions.configuration_options import ConfigurationOptions
 from finbourne_insights.models import *
 from pprint import pprint
 from finbourne_insights import (
@@ -46,6 +47,14 @@ async def main():
     # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -55,6 +64,9 @@ async def main():
         id = 'id_example' # str | The identifier of the request to obtain the log for.
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_vendor_log(id, opts=opts)
+
             # [EXPERIMENTAL] GetVendorLog: Get the log for a specific vendor request.
             api_response = await api_instance.get_vendor_log(id)
             pprint(api_response)
@@ -98,6 +110,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from finbourne_insights.exceptions import ApiException
+from finbourne_insights.extensions.configuration_options import ConfigurationOptions
 from finbourne_insights.models import *
 from pprint import pprint
 from finbourne_insights import (
@@ -124,6 +137,14 @@ async def main():
     # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -133,6 +154,9 @@ async def main():
         id = 'id_example' # str | The identifier of the request to obtain the content for.
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_vendor_request(id, opts=opts)
+
             # [EXPERIMENTAL] GetVendorRequest: Get the request body for a vendor request.
             api_response = await api_instance.get_vendor_request(id)
             pprint(api_response)
@@ -176,6 +200,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from finbourne_insights.exceptions import ApiException
+from finbourne_insights.extensions.configuration_options import ConfigurationOptions
 from finbourne_insights.models import *
 from pprint import pprint
 from finbourne_insights import (
@@ -202,6 +227,14 @@ async def main():
     # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -211,6 +244,9 @@ async def main():
         id = 'id_example' # str | The identifier of the request to obtain the response for.
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_vendor_response(id, opts=opts)
+
             # [EXPERIMENTAL] GetVendorResponse: Get the response from a vendor request.
             api_response = await api_instance.get_vendor_response(id)
             pprint(api_response)
@@ -254,6 +290,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from finbourne_insights.exceptions import ApiException
+from finbourne_insights.extensions.configuration_options import ConfigurationOptions
 from finbourne_insights.models import *
 from pprint import pprint
 from finbourne_insights import (
@@ -280,6 +317,14 @@ async def main():
     # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -293,6 +338,9 @@ async def main():
         histogram_interval = 'histogram_interval_example' # str | Optional interval to use in a histogram of the returned values. If not provided, no histogram will be generated. (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.list_vendor_logs(filter=filter, sort_by=sort_by, limit=limit, page=page, histogram_interval=histogram_interval, opts=opts)
+
             # [EXPERIMENTAL] ListVendorLogs: List the logs for vendor requests.
             api_response = await api_instance.list_vendor_logs(filter=filter, sort_by=sort_by, limit=limit, page=page, histogram_interval=histogram_interval)
             pprint(api_response)

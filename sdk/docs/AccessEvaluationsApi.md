@@ -18,6 +18,7 @@ Method | HTTP request | Description
 ```python
 import asyncio
 from finbourne_insights.exceptions import ApiException
+from finbourne_insights.extensions.configuration_options import ConfigurationOptions
 from finbourne_insights.models import *
 from pprint import pprint
 from finbourne_insights import (
@@ -44,6 +45,14 @@ async def main():
     # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -53,6 +62,9 @@ async def main():
         id = 'id_example' # str | The identifier of the access evaluation to obtain the log for.
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_access_evaluation_log(id, opts=opts)
+
             # [EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation.  This endpoint will be deprecated in the near future.
             api_response = await api_instance.get_access_evaluation_log(id)
             pprint(api_response)
@@ -96,6 +108,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from finbourne_insights.exceptions import ApiException
+from finbourne_insights.extensions.configuration_options import ConfigurationOptions
 from finbourne_insights.models import *
 from pprint import pprint
 from finbourne_insights import (
@@ -122,6 +135,14 @@ async def main():
     # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -137,6 +158,9 @@ async def main():
         histogram_interval = 'histogram_interval_example' # str | The interval for an included histogram of the logs (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.list_access_evaluation_logs(start_at=start_at, end_at=end_at, filter=filter, sort_by=sort_by, limit=limit, page=page, histogram_interval=histogram_interval, opts=opts)
+
             # [EARLY ACCESS] ListAccessEvaluationLogs: List the logs for access evaluations.
             api_response = await api_instance.list_access_evaluation_logs(start_at=start_at, end_at=end_at, filter=filter, sort_by=sort_by, limit=limit, page=page, histogram_interval=histogram_interval)
             pprint(api_response)

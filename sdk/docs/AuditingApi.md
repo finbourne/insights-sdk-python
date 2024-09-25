@@ -19,6 +19,7 @@ Method | HTTP request | Description
 ```python
 import asyncio
 from finbourne_insights.exceptions import ApiException
+from finbourne_insights.extensions.configuration_options import ConfigurationOptions
 from finbourne_insights.models import *
 from pprint import pprint
 from finbourne_insights import (
@@ -45,6 +46,14 @@ async def main():
     # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -59,6 +68,9 @@ async def main():
         create_audit_entry = CreateAuditEntry.from_dict({"process":{"name":"processName","runId":"processRunId","startTime":"0001-01-01T00:00:00.0000000+00:00"},"data":{"action":"dataAction","category":"dataCategory","userId":"dataUserId","message":"dataMessage","resource":{"type":"resourceType","identifier":"resourceIdentifier"},"detailsType":"dataDetailsType"}}) # CreateAuditEntry | Information about the entry to be created. (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.create_entry(create_audit_entry=create_audit_entry, opts=opts)
+
             # [EARLY ACCESS] CreateEntry: Create (persist) and audit entry..
             api_response = await api_instance.create_entry(create_audit_entry=create_audit_entry)
             pprint(api_response)
@@ -105,6 +117,7 @@ This will never be `null`, though it may be empty.
 ```python
 import asyncio
 from finbourne_insights.exceptions import ApiException
+from finbourne_insights.extensions.configuration_options import ConfigurationOptions
 from finbourne_insights.models import *
 from pprint import pprint
 from finbourne_insights import (
@@ -131,6 +144,14 @@ async def main():
     # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -139,6 +160,9 @@ async def main():
         api_instance = api_client_factory.build(AuditingApi)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_processes(opts=opts)
+
             # [EARLY ACCESS] GetProcesses: Get the latest audit entry for each process.
             api_response = await api_instance.get_processes()
             pprint(api_response)
@@ -180,6 +204,7 @@ This will never be `null`, though it may be empty.
 ```python
 import asyncio
 from finbourne_insights.exceptions import ApiException
+from finbourne_insights.extensions.configuration_options import ConfigurationOptions
 from finbourne_insights.models import *
 from pprint import pprint
 from finbourne_insights import (
@@ -206,6 +231,14 @@ async def main():
     # Use the finbourne_insights ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -218,6 +251,9 @@ async def main():
         state = 'state_example' # str | The scrolling state, used to iterate through the data set. (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.list_entries(filter=filter, sort_by=sort_by, size=size, state=state, opts=opts)
+
             # [EARLY ACCESS] ListEntries: Get the audit entries.
             api_response = await api_instance.list_entries(filter=filter, sort_by=sort_by, size=size, state=state)
             pprint(api_response)
