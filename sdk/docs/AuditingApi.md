@@ -63,9 +63,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # create_audit_entry = CreateAuditEntry()
         # create_audit_entry = CreateAuditEntry.from_json("")
-        create_audit_entry = CreateAuditEntry.from_dict({"process":{"name":"processName","runId":"processRunId","startTime":"0001-01-01T00:00:00.0000000+00:00"},"data":{"action":"dataAction","category":"dataCategory","userId":"dataUserId","message":"dataMessage","resource":{"type":"resourceType","identifier":"resourceIdentifier"},"detailsType":"dataDetailsType"}}) # CreateAuditEntry | Information about the entry to be created. (optional)
+        # create_audit_entry = CreateAuditEntry.from_dict({})
+        create_audit_entry = CreateAuditEntry()
 
         try:
             # uncomment the below to set overrides at the request level
