@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, Field
 from finbourne_insights.models.histogram import Histogram
 from finbourne_insights.models.link import Link
 from finbourne_insights.models.vendor_log import VendorLog
@@ -30,9 +30,9 @@ class ResourceListWithHistogramOfVendorLog(BaseModel):
     """
     histogram: Optional[Histogram] = None
     values: conlist(VendorLog) = Field(...)
-    href: Optional[StrictStr] = None
-    next_page: Optional[StrictStr] = Field(None, alias="nextPage")
-    previous_page: Optional[StrictStr] = Field(None, alias="previousPage")
+    href: constr(strict=True) = Field(None,alias="href") 
+    next_page: constr(strict=True) = Field(None,alias="nextPage") 
+    previous_page: constr(strict=True) = Field(None,alias="previousPage") 
     links: Optional[conlist(Link)] = None
     __properties = ["histogram", "values", "href", "nextPage", "previousPage", "links"]
 
@@ -40,6 +40,14 @@ class ResourceListWithHistogramOfVendorLog(BaseModel):
         """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
+
+    def __str__(self):
+        """For `print` and `pprint`"""
+        return pprint.pformat(self.dict(by_alias=False))
+
+    def __repr__(self):
+        """For `print` and `pprint`"""
+        return self.to_str()
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

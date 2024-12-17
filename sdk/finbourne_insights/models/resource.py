@@ -19,20 +19,28 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, constr
+from pydantic.v1 import BaseModel, constr, Field
 
 class Resource(BaseModel):
     """
     Resource
     """
-    type: Optional[constr(strict=True, max_length=64, min_length=0)] = None
-    identifier: Optional[constr(strict=True, max_length=128, min_length=0)] = None
+    type: constr(strict=True) = Field(None,alias="type") 
+    identifier: constr(strict=True) = Field(None,alias="identifier") 
     __properties = ["type", "identifier"]
 
     class Config:
         """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
+
+    def __str__(self):
+        """For `print` and `pprint`"""
+        return pprint.pformat(self.dict(by_alias=False))
+
+    def __repr__(self):
+        """For `print` and `pprint`"""
+        return self.to_str()
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

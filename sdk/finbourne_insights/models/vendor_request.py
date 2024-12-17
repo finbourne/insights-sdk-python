@@ -19,15 +19,15 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist, constr
+from pydantic.v1 import BaseModel, Field, conlist, constr, Field
 from finbourne_insights.models.link import Link
 
 class VendorRequest(BaseModel):
     """
     Details of a request made to a vendor service.  # noqa: E501
     """
-    id: constr(strict=True, min_length=1) = Field(..., description="The ID of the log.")
-    request: constr(strict=True, min_length=1) = Field(..., description="The body of the request.")
+    id: constr(strict=True) = Field(...,alias="id", description="The ID of the log.") 
+    request: constr(strict=True) = Field(...,alias="request", description="The body of the request.") 
     links: Optional[conlist(Link)] = None
     __properties = ["id", "request", "links"]
 
@@ -35,6 +35,14 @@ class VendorRequest(BaseModel):
         """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
+
+    def __str__(self):
+        """For `print` and `pprint`"""
+        return pprint.pformat(self.dict(by_alias=False))
+
+    def __repr__(self):
+        """For `print` and `pprint`"""
+        return self.to_str()
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

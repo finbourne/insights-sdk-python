@@ -19,19 +19,19 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, constr
+from pydantic.v1 import BaseModel, Field, constr, Field
 from finbourne_insights.models.resource import Resource
 
 class AuditData(BaseModel):
     """
     AuditData
     """
-    action: constr(strict=True, max_length=64, min_length=0) = Field(...)
-    category: constr(strict=True, max_length=16, min_length=0) = Field(...)
-    user_id: Optional[constr(strict=True, max_length=128, min_length=0)] = Field(None, alias="userId")
-    message: Optional[constr(strict=True, max_length=1024, min_length=0)] = None
+    action: constr(strict=True) = Field(...,alias="action") 
+    category: constr(strict=True) = Field(...,alias="category") 
+    user_id: constr(strict=True) = Field(None,alias="userId") 
+    message: constr(strict=True) = Field(None,alias="message") 
     resource: Optional[Resource] = None
-    details_type: Optional[constr(strict=True, max_length=16, min_length=0)] = Field(None, alias="detailsType")
+    details_type: constr(strict=True) = Field(None,alias="detailsType") 
     details: Optional[Any] = None
     __properties = ["action", "category", "userId", "message", "resource", "detailsType", "details"]
 
@@ -39,6 +39,14 @@ class AuditData(BaseModel):
         """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
+
+    def __str__(self):
+        """For `print` and `pprint`"""
+        return pprint.pformat(self.dict(by_alias=False))
+
+    def __repr__(self):
+        """For `print` and `pprint`"""
+        return self.to_str()
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

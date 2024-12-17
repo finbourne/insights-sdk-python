@@ -19,14 +19,14 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, constr
+from pydantic.v1 import BaseModel, Field, constr, Field
 
 class AuditEntryNote(BaseModel):
     """
     AuditEntryNote
     """
-    user_id: constr(strict=True, min_length=1) = Field(..., alias="userId")
-    text: constr(strict=True, min_length=1) = Field(...)
+    user_id: constr(strict=True) = Field(...,alias="userId") 
+    text: constr(strict=True) = Field(...,alias="text") 
     var_date: datetime = Field(..., alias="date")
     __properties = ["userId", "text", "date"]
 
@@ -34,6 +34,14 @@ class AuditEntryNote(BaseModel):
         """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
+
+    def __str__(self):
+        """For `print` and `pprint`"""
+        return pprint.pformat(self.dict(by_alias=False))
+
+    def __repr__(self):
+        """For `print` and `pprint`"""
+        return self.to_str()
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

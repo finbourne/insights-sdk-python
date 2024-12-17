@@ -19,14 +19,14 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, constr
+from pydantic.v1 import BaseModel, Field, StrictBool, constr, Field
 
 class AuditProcess(BaseModel):
     """
     AuditProcess
     """
-    name: constr(strict=True, max_length=128, min_length=0) = Field(...)
-    run_id: constr(strict=True, min_length=1) = Field(..., alias="runId")
+    name: constr(strict=True) = Field(...,alias="name") 
+    run_id: constr(strict=True) = Field(...,alias="runId") 
     start_time: datetime = Field(..., alias="startTime")
     end_time: Optional[datetime] = Field(None, alias="endTime")
     succeeded: Optional[StrictBool] = None
@@ -36,6 +36,14 @@ class AuditProcess(BaseModel):
         """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
+
+    def __str__(self):
+        """For `print` and `pprint`"""
+        return pprint.pformat(self.dict(by_alias=False))
+
+    def __repr__(self):
+        """For `print` and `pprint`"""
+        return self.to_str()
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

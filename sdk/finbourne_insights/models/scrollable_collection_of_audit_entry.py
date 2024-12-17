@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, StrictStr, conlist
+from pydantic.v1 import BaseModel, StrictStr, conlist, Field
 from finbourne_insights.models.audit_entry import AuditEntry
 
 class ScrollableCollectionOfAuditEntry(BaseModel):
@@ -27,13 +27,21 @@ class ScrollableCollectionOfAuditEntry(BaseModel):
     ScrollableCollectionOfAuditEntry
     """
     data: Optional[conlist(AuditEntry)] = None
-    state: Optional[StrictStr] = None
+    state: constr(strict=True) = Field(None,alias="state") 
     __properties = ["data", "state"]
 
     class Config:
         """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
+
+    def __str__(self):
+        """For `print` and `pprint`"""
+        return pprint.pformat(self.dict(by_alias=False))
+
+    def __repr__(self):
+        """For `print` and `pprint`"""
+        return self.to_str()
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

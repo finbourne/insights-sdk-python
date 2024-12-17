@@ -19,24 +19,24 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
-from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, conlist, constr
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, conlist, constr, Field
 from finbourne_insights.models.link import Link
 
 class VendorLog(BaseModel):
     """
     Holds logged information about a request made to an external vendor.  # noqa: E501
     """
-    id: constr(strict=True, min_length=1) = Field(..., description="The identifier of a log entry.")
-    provider: constr(strict=True, min_length=1) = Field(..., description="The provider or service name.")
+    id: constr(strict=True) = Field(...,alias="id", description="The identifier of a log entry.") 
+    provider: constr(strict=True) = Field(...,alias="provider", description="The provider or service name.") 
     timestamp: datetime = Field(..., description="Timestamp of when the log was generated.")
-    type: constr(strict=True, min_length=1) = Field(..., description="Type of log. Possible values: HttpResponse.")
-    destination_url: constr(strict=True, min_length=1) = Field(..., alias="destinationUrl", description="The destination URL of the task.")
-    operation: constr(strict=True, min_length=1) = Field(..., description="The operation performed. Possible values: Evaluate.")
-    outcome: constr(strict=True, min_length=1) = Field(..., description="The outcome of the operation. Possible values: Success, Failure.")
+    type: constr(strict=True) = Field(...,alias="type", description="Type of log. Possible values: HttpResponse.") 
+    destination_url: constr(strict=True) = Field(...,alias="destinationUrl", description="The destination URL of the task.") 
+    operation: constr(strict=True) = Field(...,alias="operation", description="The operation performed. Possible values: Evaluate.") 
+    outcome: constr(strict=True) = Field(...,alias="outcome", description="The outcome of the operation. Possible values: Success, Failure.") 
     duration: Union[StrictFloat, StrictInt] = Field(..., description="The duration of the operation in ms.")
     http_status_code: StrictInt = Field(..., alias="httpStatusCode", description="The status code of the operation.")
-    user_id: constr(strict=True, min_length=1) = Field(..., alias="userId", description="The user that made the request to LUSID.")
-    request_id: constr(strict=True, min_length=1) = Field(..., alias="requestId", description="The ID of the request to LUSID.")
+    user_id: constr(strict=True) = Field(...,alias="userId", description="The user that made the request to LUSID.") 
+    request_id: constr(strict=True) = Field(...,alias="requestId", description="The ID of the request to LUSID.") 
     links: Optional[conlist(Link)] = None
     __properties = ["id", "provider", "timestamp", "type", "destinationUrl", "operation", "outcome", "duration", "httpStatusCode", "userId", "requestId", "links"]
 
@@ -44,6 +44,14 @@ class VendorLog(BaseModel):
         """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
+
+    def __str__(self):
+        """For `print` and `pprint`"""
+        return pprint.pformat(self.dict(by_alias=False))
+
+    def __repr__(self):
+        """For `print` and `pprint`"""
+        return self.to_str()
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
