@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, StrictInt, Field
+from pydantic.v1 import BaseModel, StrictInt
 
 class AuditDataSummary(BaseModel):
     """

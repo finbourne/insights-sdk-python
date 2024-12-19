@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, Field
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from finbourne_insights.models.histogram import Histogram
 from finbourne_insights.models.link import Link
 from finbourne_insights.models.vendor_log import VendorLog
@@ -30,9 +30,9 @@ class ResourceListWithHistogramOfVendorLog(BaseModel):
     """
     histogram: Optional[Histogram] = None
     values: conlist(VendorLog) = Field(...)
-    href: constr(strict=True) = Field(None,alias="href") 
-    next_page: constr(strict=True) = Field(None,alias="nextPage") 
-    previous_page: constr(strict=True) = Field(None,alias="previousPage") 
+    href: Optional[StrictStr] = None
+    next_page: Optional[StrictStr] = Field(None, alias="nextPage")
+    previous_page: Optional[StrictStr] = Field(None, alias="previousPage")
     links: Optional[conlist(Link)] = None
     __properties = ["histogram", "values", "href", "nextPage", "previousPage", "links"]
 

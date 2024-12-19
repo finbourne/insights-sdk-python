@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, Field
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
 from finbourne_insights.models.link import Link
 
 class Response(BaseModel):
@@ -28,8 +28,8 @@ class Response(BaseModel):
     """
     headers: Optional[Dict[str, conlist(StrictStr)]] = Field(None, description="The headers")
     content_length: Optional[StrictInt] = Field(None, alias="contentLength", description="The actual length of the body, which may be larger than the data recorded in Finbourne.Insights.WebApi.Dtos.Response.Body  (e.g. if actual Body is large, or not convertible to a string)")
-    content_type: constr(strict=True) = Field(None,alias="contentType", description="The content type") 
-    body: constr(strict=True) = Field(None,alias="body", description="The recorded content.") 
+    content_type: Optional[StrictStr] = Field(None, alias="contentType", description="The content type")
+    body: Optional[StrictStr] = Field(None, description="The recorded content.")
     body_was_truncated: Optional[StrictBool] = Field(None, alias="bodyWasTruncated", description="Determines if the recorded body was truncated.")
     status_code: Optional[StrictInt] = Field(None, alias="statusCode", description="Http Status Code of the request.")
     links: Optional[conlist(Link)] = None

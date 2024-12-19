@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist, constr, Field
+from pydantic.v1 import BaseModel, Field, conlist, constr
 from finbourne_insights.models.audit_data import AuditData
 from finbourne_insights.models.audit_entry_note import AuditEntryNote
 from finbourne_insights.models.audit_process import AuditProcess
@@ -28,7 +28,7 @@ class AuditEntry(BaseModel):
     """
     AuditEntry
     """
-    id: constr(strict=True) = Field(...,alias="id") 
+    id: constr(strict=True, min_length=1) = Field(...)
     var_date: datetime = Field(..., alias="date")
     process: AuditProcess = Field(...)
     data: AuditData = Field(...)

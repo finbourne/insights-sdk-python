@@ -19,15 +19,15 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist, constr, Field
+from pydantic.v1 import BaseModel, Field, conlist, constr
 from finbourne_insights.models.link import Link
 
 class VendorResponse(BaseModel):
     """
     Details of a response to a request made to a vendor service.  # noqa: E501
     """
-    id: constr(strict=True) = Field(...,alias="id", description="The ID of the log.") 
-    response: constr(strict=True) = Field(...,alias="response", description="The body of the response.") 
+    id: constr(strict=True, min_length=1) = Field(..., description="The ID of the log.")
+    response: constr(strict=True, min_length=1) = Field(..., description="The body of the response.")
     links: Optional[conlist(Link)] = None
     __properties = ["id", "response", "links"]
 

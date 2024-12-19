@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
-from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist, constr, validator, Field
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist, constr, validator
 from finbourne_insights.models.link import Link
 
 class AccessEvaluationLog(BaseModel):
@@ -27,29 +27,39 @@ class AccessEvaluationLog(BaseModel):
     Holds logged information about an access check performed on an API.  # noqa: E501
     """
     timestamp: datetime = Field(..., description="The timestamp of the access evaluation.")
-    application: constr(strict=True) = Field(...,alias="application", description="The name of the application that the request was made from.") 
-    id: constr(strict=True) = Field(...,alias="id", description="The ID of the access evaluation.") 
-    request_id: constr(strict=True) = Field(None,alias="requestId", description="The identifier of the request.") 
-    session_id: constr(strict=True) = Field(None,alias="sessionId", description="The identifier of the session that the request was made in.") 
-    user: constr(strict=True) = Field(...,alias="user", description="The user who made the request.") 
-    user_type: constr(strict=True) = Field(None,alias="userType", description="The type of the user who made the request.") 
+    application: constr(strict=True, min_length=1) = Field(..., description="The name of the application that the request was made from.")
+    id: constr(strict=True, min_length=1) = Field(..., description="The ID of the access evaluation.")
+    request_id: Optional[StrictStr] = Field(None, alias="requestId", description="The identifier of the request.")
+    session_id: Optional[StrictStr] = Field(None, alias="sessionId", description="The identifier of the session that the request was made in.")
+    user: constr(strict=True, min_length=1) = Field(..., description="The user who made the request.")
+    user_type: Optional[StrictStr] = Field(None, alias="userType", description="The type of the user who made the request.")
     duration: Union[StrictFloat, StrictInt] = Field(..., description="The duration of the access evaluation.")
-    result: constr(strict=True) = Field(None,alias="result", description="The result of the access evaluation.") 
-    authoritative_role_id: constr(strict=True) = Field(None,alias="authoritativeRoleId", description="The role that matched the access evaluation to provide a result.") 
-    authoritative_policy_id: constr(strict=True) = Field(None,alias="authoritativePolicyId", description="The policy that matched the access evaluation to provide a result.") 
-    authoritative_selector: constr(strict=True) = Field(None,alias="authoritativeSelector", description="The selector that matched the access evaluation to provide a result.") 
-    resource_type: constr(strict=True) = Field(None,alias="resourceType", description="The type of the resource that the access evaluation is for.") 
-    action: constr(strict=True) = Field(None,alias="action", description="The action key of the access evaluation.") 
+    result: Optional[StrictStr] = Field(None, description="The result of the access evaluation.")
+    authoritative_role_id: Optional[StrictStr] = Field(None, alias="authoritativeRoleId", description="The role that matched the access evaluation to provide a result.")
+    authoritative_policy_id: Optional[StrictStr] = Field(None, alias="authoritativePolicyId", description="The policy that matched the access evaluation to provide a result.")
+    authoritative_selector: Optional[StrictStr] = Field(None, alias="authoritativeSelector", description="The selector that matched the access evaluation to provide a result.")
+    resource_type: Optional[StrictStr] = Field(None, alias="resourceType", description="The type of the resource that the access evaluation is for.")
+    action: Optional[StrictStr] = Field(None, description="The action key of the access evaluation.")
     resource: Optional[Dict[str, StrictStr]] = Field(None, description="The ID of the resource that the access evaluation is for. If the ResourceID could not be converted to a dictionary, it will return a single-value dictionary with the key \"resourceId\".")
-    resource_from_effective_date: constr(strict=True) = Field(None,alias="resourceFromEffectiveDate", description="The From effective date of the resource.") 
-    resource_to_effective_date: constr(strict=True) = Field(None,alias="resourceToEffectiveDate", description="The To effective date of the resource.") 
-    resource_from_as_at: constr(strict=True) = Field(None,alias="resourceFromAsAt", description="The From AsAt date of the resource.") 
-    resource_to_as_at: constr(strict=True) = Field(None,alias="resourceToAsAt", description="The To AsAt date of the resource.") 
-    access_execution_time: constr(strict=True) = Field(None,alias="accessExecutionTime", description="The execution time of the entitlement.") 
-    access_as_at_time: constr(strict=True) = Field(None,alias="accessAsAtTime", description="The AsAt time of the entitlement.") 
-    required_licence_policy_id: constr(strict=True) = Field(None,alias="requiredLicencePolicyId", description="ID of the required licence policy.") 
+    resource_from_effective_date: Optional[StrictStr] = Field(None, alias="resourceFromEffectiveDate", description="The From effective date of the resource.")
+    resource_to_effective_date: Optional[StrictStr] = Field(None, alias="resourceToEffectiveDate", description="The To effective date of the resource.")
+    resource_from_as_at: Optional[StrictStr] = Field(None, alias="resourceFromAsAt", description="The From AsAt date of the resource.")
+    resource_to_as_at: Optional[StrictStr] = Field(None, alias="resourceToAsAt", description="The To AsAt date of the resource.")
+    access_execution_time: Optional[StrictStr] = Field(None, alias="accessExecutionTime", description="The execution time of the entitlement.")
+    access_as_at_time: Optional[StrictStr] = Field(None, alias="accessAsAtTime", description="The AsAt time of the entitlement.")
+    required_licence_policy_id: Optional[constr(strict=True, max_length=64, min_length=1)] = Field(None, alias="requiredLicencePolicyId", description="ID of the required licence policy.")
     links: Optional[conlist(Link)] = None
     __properties = ["timestamp", "application", "id", "requestId", "sessionId", "user", "userType", "duration", "result", "authoritativeRoleId", "authoritativePolicyId", "authoritativeSelector", "resourceType", "action", "resource", "resourceFromEffectiveDate", "resourceToEffectiveDate", "resourceFromAsAt", "resourceToAsAt", "accessExecutionTime", "accessAsAtTime", "requiredLicencePolicyId", "links"]
+
+    @validator('required_licence_policy_id')
+    def required_licence_policy_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[a-zA-Z0-9\-_:\+]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9\-_:\+]+$/")
+        return value
 
     class Config:
         """Pydantic configuration"""

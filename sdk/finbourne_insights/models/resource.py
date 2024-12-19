@@ -19,14 +19,14 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, constr, Field
+from pydantic.v1 import BaseModel, constr
 
 class Resource(BaseModel):
     """
     Resource
     """
-    type: constr(strict=True) = Field(None,alias="type") 
-    identifier: constr(strict=True) = Field(None,alias="identifier") 
+    type: Optional[constr(strict=True, max_length=64, min_length=0)] = None
+    identifier: Optional[constr(strict=True, max_length=128, min_length=0)] = None
     __properties = ["type", "identifier"]
 
     class Config:

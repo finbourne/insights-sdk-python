@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist, Field
+from pydantic.v1 import BaseModel, Field, conlist
 from finbourne_insights.models.bucket import Bucket
 
 class Histogram(BaseModel):

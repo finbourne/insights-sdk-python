@@ -19,14 +19,14 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, constr, Field
+from pydantic.v1 import BaseModel, Field, constr
 
 class AuditEntryNote(BaseModel):
     """
     AuditEntryNote
     """
-    user_id: constr(strict=True) = Field(...,alias="userId") 
-    text: constr(strict=True) = Field(...,alias="text") 
+    user_id: constr(strict=True, min_length=1) = Field(..., alias="userId")
+    text: constr(strict=True, min_length=1) = Field(...)
     var_date: datetime = Field(..., alias="date")
     __properties = ["userId", "text", "date"]
 
