@@ -19,19 +19,19 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr 
 from finbourne_insights.models.resource import Resource
 
 class AuditData(BaseModel):
     """
     AuditData
     """
-    action: constr(strict=True, max_length=64, min_length=0) = Field(...)
-    category: constr(strict=True, max_length=16, min_length=0) = Field(...)
-    user_id: Optional[constr(strict=True, max_length=128, min_length=1)] = Field(None, alias="userId")
-    message: Optional[constr(strict=True, max_length=1024, min_length=0)] = None
+    action:  StrictStr = Field(...,alias="action") 
+    category:  StrictStr = Field(...,alias="category") 
+    user_id:  Optional[StrictStr] = Field(None,alias="userId") 
+    message:  Optional[StrictStr] = Field(None,alias="message") 
     resource: Optional[Resource] = None
-    details_type: Optional[constr(strict=True, max_length=16, min_length=0)] = Field(None, alias="detailsType")
+    details_type:  Optional[StrictStr] = Field(None,alias="detailsType") 
     details: Optional[Any] = None
     __properties = ["action", "category", "userId", "message", "resource", "detailsType", "details"]
 

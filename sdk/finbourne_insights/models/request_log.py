@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
-from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist, constr 
 from finbourne_insights.models.link import Link
 
 class RequestLog(BaseModel):
@@ -27,24 +27,24 @@ class RequestLog(BaseModel):
     Holds logged information about a request performed on an API.  # noqa: E501
     """
     timestamp: datetime = Field(..., description="The timestamp of the request.")
-    application: constr(strict=True, min_length=1) = Field(..., description="The name of the application that the request was made to.")
-    id: constr(strict=True, min_length=1) = Field(..., description="The identifier of the request.")
-    session_id: Optional[StrictStr] = Field(None, alias="sessionId", description="The identifier of the session that the request was made in.")
-    verb: constr(strict=True, min_length=1) = Field(..., description="The HTTP verb of the request.")
-    url: constr(strict=True, min_length=1) = Field(..., description="The URL of the request.")
-    domain: Optional[StrictStr] = Field(None, description="The domain of the request.")
-    user: constr(strict=True, min_length=1) = Field(..., description="The user who made the request.")
-    user_type: Optional[StrictStr] = Field(None, alias="userType", description="The type of the user who made the request.")
-    operation: Optional[StrictStr] = Field(None, description="The API operation invoked by the request.")
-    outcome: constr(strict=True, min_length=1) = Field(..., description="The outcome of the request: Success, Failure or Error.")
+    application:  StrictStr = Field(...,alias="application", description="The name of the application that the request was made to.") 
+    id:  StrictStr = Field(...,alias="id", description="The identifier of the request.") 
+    session_id:  Optional[StrictStr] = Field(None,alias="sessionId", description="The identifier of the session that the request was made in.") 
+    verb:  StrictStr = Field(...,alias="verb", description="The HTTP verb of the request.") 
+    url:  StrictStr = Field(...,alias="url", description="The URL of the request.") 
+    domain:  Optional[StrictStr] = Field(None,alias="domain", description="The domain of the request.") 
+    user:  StrictStr = Field(...,alias="user", description="The user who made the request.") 
+    user_type:  Optional[StrictStr] = Field(None,alias="userType", description="The type of the user who made the request.") 
+    operation:  Optional[StrictStr] = Field(None,alias="operation", description="The API operation invoked by the request.") 
+    outcome:  StrictStr = Field(...,alias="outcome", description="The outcome of the request: Success, Failure or Error.") 
     duration: Union[StrictFloat, StrictInt] = Field(..., description="The duration of the request in milliseconds.")
     http_status_code: StrictInt = Field(..., alias="httpStatusCode", description="The status code of the request.")
-    error_code: Optional[StrictStr] = Field(None, alias="errorCode", description="Error code, if the request had a failure or error.")
-    sdk_language: Optional[StrictStr] = Field(None, alias="sdkLanguage", description="The language of the SDK used.")
-    sdk_version: Optional[StrictStr] = Field(None, alias="sdkVersion", description="The version of the SDK used.")
-    source_application: Optional[StrictStr] = Field(None, alias="sourceApplication", description="The name of the application that made the request.")
+    error_code:  Optional[StrictStr] = Field(None,alias="errorCode", description="Error code, if the request had a failure or error.") 
+    sdk_language:  Optional[StrictStr] = Field(None,alias="sdkLanguage", description="The language of the SDK used.") 
+    sdk_version:  Optional[StrictStr] = Field(None,alias="sdkVersion", description="The version of the SDK used.") 
+    source_application:  Optional[StrictStr] = Field(None,alias="sourceApplication", description="The name of the application that made the request.") 
     correlation_id: Optional[conlist(StrictStr)] = Field(None, alias="correlationId", description="The chain of requestIds preceding this request")
-    impersonating_user: Optional[StrictStr] = Field(None, alias="impersonatingUser", description="The impersonating user. Only present if the request is an impersonated one")
+    impersonating_user:  Optional[StrictStr] = Field(None,alias="impersonatingUser", description="The impersonating user. Only present if the request is an impersonated one") 
     links: Optional[conlist(Link)] = None
     __properties = ["timestamp", "application", "id", "sessionId", "verb", "url", "domain", "user", "userType", "operation", "outcome", "duration", "httpStatusCode", "errorCode", "sdkLanguage", "sdkVersion", "sourceApplication", "correlationId", "impersonatingUser", "links"]
 

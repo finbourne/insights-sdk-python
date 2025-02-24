@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field
+from pydantic.v1 import StrictStr, Field, BaseModel, Field 
 from finbourne_insights.models.audit_data import AuditData
 from finbourne_insights.models.audit_data_summary import AuditDataSummary
 from finbourne_insights.models.audit_process import AuditProcess

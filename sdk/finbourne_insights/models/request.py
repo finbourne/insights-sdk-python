@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist 
 from finbourne_insights.models.link import Link
 
 class Request(BaseModel):
@@ -28,11 +28,11 @@ class Request(BaseModel):
     """
     headers: Optional[Dict[str, conlist(StrictStr)]] = Field(None, description="The headers")
     content_length: Optional[StrictInt] = Field(None, alias="contentLength", description="The actual length of the body, which may be larger than the data recorded in Finbourne.Insights.WebApi.Dtos.Request.Body  (e.g. if actual Body is large, or not convertible to a string)")
-    content_type: Optional[StrictStr] = Field(None, alias="contentType", description="The content type")
-    body: Optional[StrictStr] = Field(None, description="The recorded content.")
+    content_type:  Optional[StrictStr] = Field(None,alias="contentType", description="The content type") 
+    body:  Optional[StrictStr] = Field(None,alias="body", description="The recorded content.") 
     body_was_truncated: Optional[StrictBool] = Field(None, alias="bodyWasTruncated", description="Determines if the recorded body was truncated.")
-    method: Optional[StrictStr] = Field(None, description="Method called by the request")
-    url: Optional[StrictStr] = Field(None, description="URL of the request")
+    method:  Optional[StrictStr] = Field(None,alias="method", description="Method called by the request") 
+    url:  Optional[StrictStr] = Field(None,alias="url", description="URL of the request") 
     links: Optional[conlist(Link)] = None
     __properties = ["headers", "contentLength", "contentType", "body", "bodyWasTruncated", "method", "url", "links"]
 

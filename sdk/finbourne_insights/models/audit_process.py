@@ -19,14 +19,14 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, constr 
 
 class AuditProcess(BaseModel):
     """
     AuditProcess
     """
-    name: constr(strict=True, max_length=128, min_length=0) = Field(...)
-    run_id: constr(strict=True, min_length=1) = Field(..., alias="runId")
+    name:  StrictStr = Field(...,alias="name") 
+    run_id:  StrictStr = Field(...,alias="runId") 
     start_time: datetime = Field(..., alias="startTime")
     end_time: Optional[datetime] = Field(None, alias="endTime")
     succeeded: Optional[StrictBool] = None

@@ -19,17 +19,17 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, StrictInt, StrictStr
+from pydantic.v1 import StrictStr, Field, BaseModel, StrictInt, StrictStr 
 
 class ProblemDetails(BaseModel):
     """
     ProblemDetails
     """
-    type: Optional[StrictStr] = None
-    title: Optional[StrictStr] = None
+    type:  Optional[StrictStr] = Field(None,alias="type") 
+    title:  Optional[StrictStr] = Field(None,alias="title") 
     status: Optional[StrictInt] = None
-    detail: Optional[StrictStr] = None
-    instance: Optional[StrictStr] = None
+    detail:  Optional[StrictStr] = Field(None,alias="detail") 
+    instance:  Optional[StrictStr] = Field(None,alias="instance") 
     __properties = ["type", "title", "status", "detail", "instance"]
 
     class Config:
