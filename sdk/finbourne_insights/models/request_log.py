@@ -36,7 +36,7 @@ class RequestLog(BaseModel):
     user:  StrictStr = Field(...,alias="user", description="The user who made the request.") 
     user_type:  Optional[StrictStr] = Field(None,alias="userType", description="The type of the user who made the request.") 
     operation:  Optional[StrictStr] = Field(None,alias="operation", description="The API operation invoked by the request.") 
-    outcome:  StrictStr = Field(...,alias="outcome", description="The outcome of the request: Success, Failure or Error.") 
+    outcome:  StrictStr = Field(...,alias="outcome", description="The outcome of the request: Completed, Errored or Failed.") 
     duration: Union[StrictFloat, StrictInt] = Field(..., description="The duration of the request in milliseconds.")
     http_status_code: StrictInt = Field(..., alias="httpStatusCode", description="The status code of the request.")
     error_code:  Optional[StrictStr] = Field(None,alias="errorCode", description="Error code, if the request had a failure or error.") 

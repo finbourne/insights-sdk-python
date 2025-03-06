@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **user** | **str** | The user who made the request. | 
 **user_type** | **str** | The type of the user who made the request. | [optional] 
 **operation** | **str** | The API operation invoked by the request. | [optional] 
-**outcome** | **str** | The outcome of the request: Success, Failure or Error. | 
+**outcome** | **str** | The outcome of the request: Completed, Errored or Failed. | 
 **duration** | **float** | The duration of the request in milliseconds. | 
 **http_status_code** | **int** | The status code of the request. | 
 **error_code** | **str** | Error code, if the request had a failure or error. | [optional] 
