@@ -1,6 +1,5 @@
 # AuditData
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -11,24 +10,23 @@ Name | Type | Description | Notes
 **resource** | [**Resource**](Resource.md) |  | [optional] 
 **details_type** | **str** |  | [optional] 
 **details** | **object** |  | [optional] 
-
 ## Example
 
 ```python
 from finbourne_insights.models.audit_data import AuditData
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, constr
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of AuditData from a JSON string
-audit_data_instance = AuditData.from_json(json)
-# print the JSON string representation of the object
-print AuditData.to_json()
+action: StrictStr = "example_action"
+category: StrictStr = "example_category"
+user_id: Optional[StrictStr] = "example_user_id"
+message: Optional[StrictStr] = "example_message"
+resource: Optional[Resource] = None
+details_type: Optional[StrictStr] = "example_details_type"
+details: Optional[Any] = None
+audit_data_instance = AuditData(action=action, category=category, user_id=user_id, message=message, resource=resource, details_type=details_type, details=details)
 
-# convert the object into a dict
-audit_data_dict = audit_data_instance.to_dict()
-# create an instance of AuditData from a dict
-audit_data_form_dict = audit_data.from_dict(audit_data_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

@@ -1,7 +1,6 @@
 # VendorLog
 
 Holds logged information about a request made to an external vendor.
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -17,24 +16,29 @@ Name | Type | Description | Notes
 **user_id** | **str** | The user that made the request to LUSID. | 
 **request_id** | **str** | The ID of the request to LUSID. | 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
-
 ## Example
 
 ```python
 from finbourne_insights.models.vendor_log import VendorLog
+from typing import Any, Dict, List, Optional, Union
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, conlist, constr
+from datetime import datetime
+id: StrictStr = "example_id"
+provider: StrictStr = "example_provider"
+timestamp: datetime = # Replace with your value
+type: StrictStr = "example_type"
+destination_url: StrictStr = "example_destination_url"
+operation: StrictStr = "example_operation"
+outcome: StrictStr = "example_outcome"
+duration: Union[StrictFloat, StrictInt] = # Replace with your value
+http_status_code: StrictInt = # Replace with your value
+http_status_code: StrictInt = 42
+user_id: StrictStr = "example_user_id"
+request_id: StrictStr = "example_request_id"
+links: Optional[conlist(Link)] = None
+vendor_log_instance = VendorLog(id=id, provider=provider, timestamp=timestamp, type=type, destination_url=destination_url, operation=operation, outcome=outcome, duration=duration, http_status_code=http_status_code, user_id=user_id, request_id=request_id, links=links)
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of VendorLog from a JSON string
-vendor_log_instance = VendorLog.from_json(json)
-# print the JSON string representation of the object
-print VendorLog.to_json()
-
-# convert the object into a dict
-vendor_log_dict = vendor_log_instance.to_dict()
-# create an instance of VendorLog from a dict
-vendor_log_form_dict = vendor_log.from_dict(vendor_log_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

@@ -1,30 +1,24 @@
 # AuditEntryNote
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **user_id** | **str** |  | 
 **text** | **str** |  | 
 **var_date** | **datetime** |  | 
-
 ## Example
 
 ```python
 from finbourne_insights.models.audit_entry_note import AuditEntryNote
+from typing import Any, Dict
+from pydantic.v1 import BaseModel, Field, constr
+from datetime import datetime
+user_id: StrictStr = "example_user_id"
+text: StrictStr = "example_text"
+var_date: datetime = # Replace with your value
+audit_entry_note_instance = AuditEntryNote(user_id=user_id, text=text, var_date=var_date)
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of AuditEntryNote from a JSON string
-audit_entry_note_instance = AuditEntryNote.from_json(json)
-# print the JSON string representation of the object
-print AuditEntryNote.to_json()
-
-# convert the object into a dict
-audit_entry_note_dict = audit_entry_note_instance.to_dict()
-# create an instance of AuditEntryNote from a dict
-audit_entry_note_form_dict = audit_entry_note.from_dict(audit_entry_note_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

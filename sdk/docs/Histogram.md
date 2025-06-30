@@ -1,29 +1,21 @@
 # Histogram
 
 A histogram showing an item's count in buckets of equal timespans.
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **buckets** | [**List[Bucket]**](Bucket.md) | An ordered list of the histogram buckets. | [optional] 
-
 ## Example
 
 ```python
 from finbourne_insights.models.histogram import Histogram
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, conlist
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of Histogram from a JSON string
-histogram_instance = Histogram.from_json(json)
-# print the JSON string representation of the object
-print Histogram.to_json()
+buckets: Optional[conlist(Bucket)] = # Replace with your value
+histogram_instance = Histogram(buckets=buckets)
 
-# convert the object into a dict
-histogram_dict = histogram_instance.to_dict()
-# create an instance of Histogram from a dict
-histogram_form_dict = histogram.from_dict(histogram_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

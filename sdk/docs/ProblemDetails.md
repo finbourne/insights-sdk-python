@@ -1,6 +1,5 @@
 # ProblemDetails
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -9,24 +8,22 @@ Name | Type | Description | Notes
 **status** | **int** |  | [optional] 
 **detail** | **str** |  | [optional] 
 **instance** | **str** |  | [optional] 
-
 ## Example
 
 ```python
 from finbourne_insights.models.problem_details import ProblemDetails
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, StrictInt, StrictStr
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of ProblemDetails from a JSON string
-problem_details_instance = ProblemDetails.from_json(json)
-# print the JSON string representation of the object
-print ProblemDetails.to_json()
+type: Optional[StrictStr] = "example_type"
+title: Optional[StrictStr] = "example_title"
+status: Optional[StrictInt] = None
+status: Optional[StrictInt] = None
+detail: Optional[StrictStr] = "example_detail"
+instance: Optional[StrictStr] = "example_instance"
+problem_details_instance = ProblemDetails(type=type, title=title, status=status, detail=detail, instance=instance)
 
-# convert the object into a dict
-problem_details_dict = problem_details_instance.to_dict()
-# create an instance of ProblemDetails from a dict
-problem_details_form_dict = problem_details.from_dict(problem_details_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

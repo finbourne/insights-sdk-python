@@ -1,7 +1,6 @@
 # Request
 
 DTO of Finbourne.AspNetCore.Http.TrackingEntry.RequestInformation.
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -13,24 +12,25 @@ Name | Type | Description | Notes
 **method** | **str** | Method called by the request | [optional] 
 **url** | **str** | URL of the request | [optional] 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
-
 ## Example
 
 ```python
 from finbourne_insights.models.request import Request
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of Request from a JSON string
-request_instance = Request.from_json(json)
-# print the JSON string representation of the object
-print Request.to_json()
+headers: Optional[Dict[str, conlist(StrictStr)]] = # Replace with your value
+content_length: Optional[StrictInt] = # Replace with your value
+content_type: Optional[StrictStr] = "example_content_type"
+body: Optional[StrictStr] = "example_body"
+body_was_truncated: Optional[StrictBool] = # Replace with your value
+body_was_truncated:Optional[StrictBool] = None
+method: Optional[StrictStr] = "example_method"
+url: Optional[StrictStr] = "example_url"
+links: Optional[conlist(Link)] = None
+request_instance = Request(headers=headers, content_length=content_length, content_type=content_type, body=body, body_was_truncated=body_was_truncated, method=method, url=url, links=links)
 
-# convert the object into a dict
-request_dict = request_instance.to_dict()
-# create an instance of Request from a dict
-request_form_dict = request.from_dict(request_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
