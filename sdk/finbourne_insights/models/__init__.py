@@ -38,11 +38,15 @@ from finbourne_insights.models.request_log import RequestLog
 from finbourne_insights.models.resource import Resource
 from finbourne_insights.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
 from finbourne_insights.models.resource_list_of_audit_process_summary import ResourceListOfAuditProcessSummary
+from finbourne_insights.models.resource_list_of_trace_event_log import ResourceListOfTraceEventLog
+from finbourne_insights.models.resource_list_of_trace_log import ResourceListOfTraceLog
 from finbourne_insights.models.resource_list_with_histogram_of_access_evaluation_log import ResourceListWithHistogramOfAccessEvaluationLog
 from finbourne_insights.models.resource_list_with_histogram_of_request_log import ResourceListWithHistogramOfRequestLog
 from finbourne_insights.models.resource_list_with_histogram_of_vendor_log import ResourceListWithHistogramOfVendorLog
 from finbourne_insights.models.response import Response
 from finbourne_insights.models.scrollable_collection_of_audit_entry import ScrollableCollectionOfAuditEntry
+from finbourne_insights.models.trace_event_log import TraceEventLog
+from finbourne_insights.models.trace_log import TraceLog
 from finbourne_insights.models.vendor_log import VendorLog
 from finbourne_insights.models.vendor_request import VendorRequest
 from finbourne_insights.models.vendor_response import VendorResponse
@@ -73,11 +77,15 @@ __all__ = [
     "Resource",
     "ResourceListOfAccessControlledResource",
     "ResourceListOfAuditProcessSummary",
+    "ResourceListOfTraceEventLog",
+    "ResourceListOfTraceLog",
     "ResourceListWithHistogramOfAccessEvaluationLog",
     "ResourceListWithHistogramOfRequestLog",
     "ResourceListWithHistogramOfVendorLog",
     "Response",
     "ScrollableCollectionOfAuditEntry",
+    "TraceEventLog",
+    "TraceLog",
     "VendorLog",
     "VendorRequest",
     "VendorResponse"
