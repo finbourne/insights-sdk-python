@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, constr 
 
 class AuditProcess(BaseModel):
     """
@@ -27,8 +29,8 @@ class AuditProcess(BaseModel):
     """
     name:  StrictStr = Field(...,alias="name") 
     run_id:  StrictStr = Field(...,alias="runId") 
-    start_time: datetime = Field(..., alias="startTime")
-    end_time: Optional[datetime] = Field(None, alias="endTime")
+    start_time: datetime = Field(alias="startTime")
+    end_time: Optional[datetime] = Field(default=None, alias="endTime")
     succeeded: Optional[StrictBool] = None
     __properties = ["name", "runId", "startTime", "endTime", "succeeded"]
 
@@ -93,3 +95,5 @@ class AuditProcess(BaseModel):
             "succeeded": obj.get("succeeded")
         })
         return _obj
+
+AuditProcess.update_forward_refs()

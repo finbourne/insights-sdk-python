@@ -20,9 +20,11 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.vendor_log import VendorLog
-from typing import Any, Dict, List, Optional, Union
-from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, conlist, constr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 id: StrictStr = "example_id"
 provider: StrictStr = "example_provider"
 timestamp: datetime = # Replace with your value
@@ -35,7 +37,7 @@ http_status_code: StrictInt = # Replace with your value
 http_status_code: StrictInt = 42
 user_id: StrictStr = "example_user_id"
 request_id: StrictStr = "example_request_id"
-links: Optional[conlist(Link)] = None
+links: Optional[List[Link]] = None
 vendor_log_instance = VendorLog(id=id, provider=provider, timestamp=timestamp, type=type, destination_url=destination_url, operation=operation, outcome=outcome, duration=duration, http_status_code=http_status_code, user_id=user_id, request_id=request_id, links=links)
 
 ```

@@ -19,13 +19,10 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
 from datetime import datetime
-
-from pydantic.v1 import Field, StrictStr, conint, constr, validator
-
+from pydantic.v1 import Field, StrictInt, StrictStr
 from typing import Optional
-
+from typing_extensions import Annotated
 from finbourne_insights.models.access_evaluation_log import AccessEvaluationLog
 from finbourne_insights.models.resource_list_with_histogram_of_access_evaluation_log import ResourceListWithHistogramOfAccessEvaluationLog
 
@@ -65,7 +62,7 @@ class AccessEvaluationsApi:
 
     @validate_arguments
     def get_access_evaluation_log(self, id : Annotated[StrictStr, Field(..., description="The identifier of the access evaluation to obtain the log for.")], async_req: Optional[bool]=None, **kwargs) -> Union[AccessEvaluationLog, Awaitable[AccessEvaluationLog]]:  # noqa: E501
-        """[EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation.  This endpoint will be deprecated in the near future.  # noqa: E501
+        """[EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation. This endpoint will be deprecated in the near future.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -95,7 +92,7 @@ class AccessEvaluationsApi:
 
     @validate_arguments
     def get_access_evaluation_log_with_http_info(self, id : Annotated[StrictStr, Field(..., description="The identifier of the access evaluation to obtain the log for.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation.  This endpoint will be deprecated in the near future.  # noqa: E501
+        """[EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation. This endpoint will be deprecated in the near future.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -206,15 +203,15 @@ class AccessEvaluationsApi:
 
 
     @overload
-    async def list_access_evaluation_logs(self, start_at : Annotated[Optional[datetime], Field(description="Start date from which point to fetch logs.")] = None, end_at : Annotated[Optional[datetime], Field(description="End date to which point to fetch logs.")] = None, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [ filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[conint(strict=True)], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field( description="The interval for an included histogram of the logs")] = None, **kwargs) -> ResourceListWithHistogramOfAccessEvaluationLog:  # noqa: E501
+    async def list_access_evaluation_logs(self, start_at : Annotated[Optional[datetime], Field(description="Start date from which point to fetch logs.")] = None, end_at : Annotated[Optional[datetime], Field(description="End date to which point to fetch logs.")] = None, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[StrictInt], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field( description="The interval for an included histogram of the logs")] = None, **kwargs) -> ResourceListWithHistogramOfAccessEvaluationLog:  # noqa: E501
         ...
 
     @overload
-    def list_access_evaluation_logs(self, start_at : Annotated[Optional[datetime], Field(description="Start date from which point to fetch logs.")] = None, end_at : Annotated[Optional[datetime], Field(description="End date to which point to fetch logs.")] = None, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [ filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[conint(strict=True)], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field( description="The interval for an included histogram of the logs")] = None, async_req: Optional[bool]=True, **kwargs) -> ResourceListWithHistogramOfAccessEvaluationLog:  # noqa: E501
+    def list_access_evaluation_logs(self, start_at : Annotated[Optional[datetime], Field(description="Start date from which point to fetch logs.")] = None, end_at : Annotated[Optional[datetime], Field(description="End date to which point to fetch logs.")] = None, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[StrictInt], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field( description="The interval for an included histogram of the logs")] = None, async_req: Optional[bool]=True, **kwargs) -> ResourceListWithHistogramOfAccessEvaluationLog:  # noqa: E501
         ...
 
     @validate_arguments
-    def list_access_evaluation_logs(self, start_at : Annotated[Optional[datetime], Field(description="Start date from which point to fetch logs.")] = None, end_at : Annotated[Optional[datetime], Field(description="End date to which point to fetch logs.")] = None, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [ filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[conint(strict=True)], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field( description="The interval for an included histogram of the logs")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListWithHistogramOfAccessEvaluationLog, Awaitable[ResourceListWithHistogramOfAccessEvaluationLog]]:  # noqa: E501
+    def list_access_evaluation_logs(self, start_at : Annotated[Optional[datetime], Field(description="Start date from which point to fetch logs.")] = None, end_at : Annotated[Optional[datetime], Field(description="End date to which point to fetch logs.")] = None, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[StrictInt], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field( description="The interval for an included histogram of the logs")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListWithHistogramOfAccessEvaluationLog, Awaitable[ResourceListWithHistogramOfAccessEvaluationLog]]:  # noqa: E501
         """[EARLY ACCESS] ListAccessEvaluationLogs: List the logs for access evaluations.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -227,7 +224,7 @@ class AccessEvaluationsApi:
         :type start_at: datetime
         :param end_at: End date to which point to fetch logs.
         :type end_at: datetime
-        :param filter: Expression to filter the result set. Read more about [ filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).
+        :param filter: Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).
         :type filter: str
         :param sort_by: Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName
         :type sort_by: str
@@ -256,7 +253,7 @@ class AccessEvaluationsApi:
         return self.list_access_evaluation_logs_with_http_info(start_at, end_at, filter, sort_by, limit, page, histogram_interval, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_access_evaluation_logs_with_http_info(self, start_at : Annotated[Optional[datetime], Field(description="Start date from which point to fetch logs.")] = None, end_at : Annotated[Optional[datetime], Field(description="End date to which point to fetch logs.")] = None, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [ filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[conint(strict=True)], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field( description="The interval for an included histogram of the logs")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def list_access_evaluation_logs_with_http_info(self, start_at : Annotated[Optional[datetime], Field(description="Start date from which point to fetch logs.")] = None, end_at : Annotated[Optional[datetime], Field(description="End date to which point to fetch logs.")] = None, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[StrictInt], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, histogram_interval : Annotated[Optional[StrictStr], Field( description="The interval for an included histogram of the logs")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """[EARLY ACCESS] ListAccessEvaluationLogs: List the logs for access evaluations.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -269,7 +266,7 @@ class AccessEvaluationsApi:
         :type start_at: datetime
         :param end_at: End date to which point to fetch logs.
         :type end_at: datetime
-        :param filter: Expression to filter the result set. Read more about [ filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).
+        :param filter: Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).
         :type filter: str
         :param sort_by: Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName
         :type sort_by: str

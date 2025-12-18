@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Union
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictFloat, StrictInt, conlist, constr 
 from finbourne_insights.models.link import Link
 
 class VendorLog(BaseModel):
@@ -28,16 +30,16 @@ class VendorLog(BaseModel):
     """
     id:  StrictStr = Field(...,alias="id", description="The identifier of a log entry.") 
     provider:  StrictStr = Field(...,alias="provider", description="The provider or service name.") 
-    timestamp: datetime = Field(..., description="Timestamp of when the log was generated.")
+    timestamp: datetime = Field(description="Timestamp of when the log was generated.")
     type:  StrictStr = Field(...,alias="type", description="Type of log. Possible values: HttpResponse.") 
     destination_url:  StrictStr = Field(...,alias="destinationUrl", description="The destination URL of the task.") 
     operation:  StrictStr = Field(...,alias="operation", description="The operation performed. Possible values: Evaluate.") 
     outcome:  StrictStr = Field(...,alias="outcome", description="The outcome of the operation. Possible values: Success, Failure.") 
-    duration: Union[StrictFloat, StrictInt] = Field(..., description="The duration of the operation in ms.")
-    http_status_code: StrictInt = Field(..., alias="httpStatusCode", description="The status code of the operation.")
+    duration: Union[StrictFloat, StrictInt] = Field(description="The duration of the operation in ms.")
+    http_status_code: StrictInt = Field(description="The status code of the operation.", alias="httpStatusCode")
     user_id:  StrictStr = Field(...,alias="userId", description="The user that made the request to LUSID.") 
     request_id:  StrictStr = Field(...,alias="requestId", description="The ID of the request to LUSID.") 
-    links: Optional[conlist(Link)] = None
+    links: Optional[List[Link]] = None
     __properties = ["id", "provider", "timestamp", "type", "destinationUrl", "operation", "outcome", "duration", "httpStatusCode", "userId", "requestId", "links"]
 
     class Config:
@@ -110,3 +112,5 @@ class VendorLog(BaseModel):
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+VendorLog.update_forward_refs()

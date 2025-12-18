@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_insights.models.audit_data import AuditData
 from finbourne_insights.models.audit_data_summary import AuditDataSummary
 from finbourne_insights.models.audit_process import AuditProcess
@@ -29,7 +31,7 @@ class AuditProcessSummary(BaseModel):
     AuditProcessSummary
     """
     process: Optional[AuditProcess] = None
-    latest_entry: Optional[AuditData] = Field(None, alias="latestEntry")
+    latest_entry: Optional[AuditData] = Field(default=None, alias="latestEntry")
     summary: Optional[AuditDataSummary] = None
     __properties = ["process", "latestEntry", "summary"]
 
@@ -91,3 +93,5 @@ class AuditProcessSummary(BaseModel):
             "summary": AuditDataSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None
         })
         return _obj
+
+AuditProcessSummary.update_forward_refs()

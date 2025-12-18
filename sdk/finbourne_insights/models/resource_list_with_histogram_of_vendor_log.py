@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_insights.models.histogram import Histogram
 from finbourne_insights.models.link import Link
 from finbourne_insights.models.vendor_log import VendorLog
@@ -29,11 +31,11 @@ class ResourceListWithHistogramOfVendorLog(BaseModel):
     ResourceList with additional aggregation data about the values.  # noqa: E501
     """
     histogram: Optional[Histogram] = None
-    values: conlist(VendorLog) = Field(...)
+    values: List[VendorLog]
     href:  Optional[StrictStr] = Field(None,alias="href") 
     next_page:  Optional[StrictStr] = Field(None,alias="nextPage") 
     previous_page:  Optional[StrictStr] = Field(None,alias="previousPage") 
-    links: Optional[conlist(Link)] = None
+    links: Optional[List[Link]] = None
     __properties = ["histogram", "values", "href", "nextPage", "previousPage", "links"]
 
     class Config:
@@ -125,3 +127,5 @@ class ResourceListWithHistogramOfVendorLog(BaseModel):
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+ResourceListWithHistogramOfVendorLog.update_forward_refs()

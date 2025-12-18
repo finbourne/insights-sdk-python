@@ -19,11 +19,9 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
 from pydantic.v1 import Field, StrictInt, StrictStr
-
 from typing import Optional
-
+from typing_extensions import Annotated
 from finbourne_insights.models.audit_entry import AuditEntry
 from finbourne_insights.models.create_audit_entry import CreateAuditEntry
 from finbourne_insights.models.resource_list_of_audit_process_summary import ResourceListOfAuditProcessSummary

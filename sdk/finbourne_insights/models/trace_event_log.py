@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, conlist, constr 
 from finbourne_insights.models.link import Link
 
 class TraceEventLog(BaseModel):
@@ -28,15 +30,16 @@ class TraceEventLog(BaseModel):
     """
     trace_event_id:  StrictStr = Field(...,alias="traceEventId", description="The identifier of the trace event.") 
     trace_id:  StrictStr = Field(...,alias="traceId", description="The identifier of the parent trace.") 
-    created_at: datetime = Field(..., alias="createdAt", description="The datetime at which the trace event was created.")
+    created_at: datetime = Field(description="The datetime at which the trace event was created.", alias="createdAt")
     event_type:  StrictStr = Field(...,alias="eventType", description="The type of the trace event.") 
+    origin:  StrictStr = Field(...,alias="origin", description="Whether the event originated from the AI or the user") 
     content:  StrictStr = Field(...,alias="content", description="The content of the trace event.") 
-    session_id:  StrictStr = Field(...,alias="sessionId", description="The session ID of the trace event.") 
-    circuit_id:  StrictStr = Field(...,alias="circuitId", description="The ID of the circuit in which the trace event occurred.") 
-    circuit_version:  StrictStr = Field(...,alias="circuitVersion", description="The version of the circuit in which the trace event occurred.") 
+    agent_scope:  StrictStr = Field(...,alias="agentScope", description="The scope of the agent currently being interacted with") 
+    agent_code:  StrictStr = Field(...,alias="agentCode", description="The code identifier of the agent currently being interacted with") 
+    agent_version: StrictInt = Field(description="The version of the circuit in which the trace event occurred.", alias="agentVersion")
     node_id:  StrictStr = Field(...,alias="nodeId", description="The ID of the circuit's node at which the trace event occured.") 
-    links: Optional[conlist(Link)] = None
-    __properties = ["traceEventId", "traceId", "createdAt", "eventType", "content", "sessionId", "circuitId", "circuitVersion", "nodeId", "links"]
+    links: Optional[List[Link]] = None
+    __properties = ["traceEventId", "traceId", "createdAt", "eventType", "origin", "content", "agentScope", "agentCode", "agentVersion", "nodeId", "links"]
 
     class Config:
         """Pydantic configuration"""
@@ -98,11 +101,14 @@ class TraceEventLog(BaseModel):
             "trace_id": obj.get("traceId"),
             "created_at": obj.get("createdAt"),
             "event_type": obj.get("eventType"),
+            "origin": obj.get("origin"),
             "content": obj.get("content"),
-            "session_id": obj.get("sessionId"),
-            "circuit_id": obj.get("circuitId"),
-            "circuit_version": obj.get("circuitVersion"),
+            "agent_scope": obj.get("agentScope"),
+            "agent_code": obj.get("agentCode"),
+            "agent_version": obj.get("agentVersion"),
             "node_id": obj.get("nodeId"),
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+TraceEventLog.update_forward_refs()

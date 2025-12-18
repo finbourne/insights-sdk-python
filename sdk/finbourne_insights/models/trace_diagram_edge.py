@@ -22,14 +22,16 @@ from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
 from typing_extensions import Annotated
 from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from finbourne_insights.models.bucket import Bucket
 
-class Histogram(BaseModel):
+class TraceDiagramEdge(BaseModel):
     """
-    A histogram showing an item's count in buckets of equal timespans.  # noqa: E501
+    Represents an edge connecting two nodes within a trace diagram.  # noqa: E501
     """
-    buckets: Optional[List[Bucket]] = Field(default=None, description="An ordered list of the histogram buckets.")
-    __properties = ["buckets"]
+    id: Optional[StrictInt] = Field(default=None, description="Sequential identifier of the edge.")
+    node_id:  Optional[StrictStr] = Field(None,alias="nodeId", description="Identifier of the parent node.") 
+    child_node_id:  Optional[StrictStr] = Field(None,alias="childNodeId", description="Identifier of the child node.") 
+    label:  Optional[StrictStr] = Field(None,alias="label", description="Label displayed for the edge.") 
+    __properties = ["id", "nodeId", "childNodeId", "label"]
 
     class Config:
         """Pydantic configuration"""
@@ -53,8 +55,8 @@ class Histogram(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Histogram:
-        """Create an instance of Histogram from a JSON string"""
+    def from_json(cls, json_str: str) -> TraceDiagramEdge:
+        """Create an instance of TraceDiagramEdge from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -63,32 +65,38 @@ class Histogram(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in buckets (list)
-        _items = []
-        if self.buckets:
-            for _item in self.buckets:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['buckets'] = _items
-        # set to None if buckets (nullable) is None
+        # set to None if node_id (nullable) is None
         # and __fields_set__ contains the field
-        if self.buckets is None and "buckets" in self.__fields_set__:
-            _dict['buckets'] = None
+        if self.node_id is None and "node_id" in self.__fields_set__:
+            _dict['nodeId'] = None
+
+        # set to None if child_node_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.child_node_id is None and "child_node_id" in self.__fields_set__:
+            _dict['childNodeId'] = None
+
+        # set to None if label (nullable) is None
+        # and __fields_set__ contains the field
+        if self.label is None and "label" in self.__fields_set__:
+            _dict['label'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Histogram:
-        """Create an instance of Histogram from a dict"""
+    def from_dict(cls, obj: dict) -> TraceDiagramEdge:
+        """Create an instance of TraceDiagramEdge from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Histogram.parse_obj(obj)
+            return TraceDiagramEdge.parse_obj(obj)
 
-        _obj = Histogram.parse_obj({
-            "buckets": [Bucket.from_dict(_item) for _item in obj.get("buckets")] if obj.get("buckets") is not None else None
+        _obj = TraceDiagramEdge.parse_obj({
+            "id": obj.get("id"),
+            "node_id": obj.get("nodeId"),
+            "child_node_id": obj.get("childNodeId"),
+            "label": obj.get("label")
         })
         return _obj
 
-Histogram.update_forward_refs()
+TraceDiagramEdge.update_forward_refs()

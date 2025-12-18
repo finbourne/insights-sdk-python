@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr 
 
 class AuditEntryNote(BaseModel):
     """
@@ -27,7 +29,7 @@ class AuditEntryNote(BaseModel):
     """
     user_id:  StrictStr = Field(...,alias="userId") 
     text:  StrictStr = Field(...,alias="text") 
-    var_date: datetime = Field(..., alias="date")
+    var_date: datetime = Field(alias="date")
     __properties = ["userId", "text", "date"]
 
     class Config:
@@ -79,3 +81,5 @@ class AuditEntryNote(BaseModel):
             "var_date": obj.get("date")
         })
         return _obj
+
+AuditEntryNote.update_forward_refs()

@@ -12,9 +12,11 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.audit_process import AuditProcess
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, constr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 name: StrictStr = "example_name"
 run_id: StrictStr = "example_run_id"
 start_time: datetime = # Replace with your value

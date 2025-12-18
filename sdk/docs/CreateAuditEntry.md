@@ -10,11 +10,13 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.create_audit_entry import CreateAuditEntry
-from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-process: AuditProcess = # Replace with your value
-data: AuditData = # Replace with your value
+process: AuditProcess
+data: AuditData
 create_audit_entry_instance = CreateAuditEntry(process=process, data=data)
 
 ```

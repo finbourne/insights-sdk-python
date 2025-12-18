@@ -17,16 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Union
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist, constr 
 from finbourne_insights.models.link import Link
 
 class RequestLog(BaseModel):
     """
     Holds logged information about a request performed on an API.  # noqa: E501
     """
-    timestamp: datetime = Field(..., description="The timestamp of the request.")
+    timestamp: datetime = Field(description="The timestamp of the request.")
     application:  StrictStr = Field(...,alias="application", description="The name of the application that the request was made to.") 
     id:  StrictStr = Field(...,alias="id", description="The identifier of the request.") 
     session_id:  Optional[StrictStr] = Field(None,alias="sessionId", description="The identifier of the session that the request was made in.") 
@@ -37,15 +39,15 @@ class RequestLog(BaseModel):
     user_type:  Optional[StrictStr] = Field(None,alias="userType", description="The type of the user who made the request.") 
     operation:  Optional[StrictStr] = Field(None,alias="operation", description="The API operation invoked by the request.") 
     outcome:  StrictStr = Field(...,alias="outcome", description="The outcome of the request: Completed, Errored or Failed.") 
-    duration: Union[StrictFloat, StrictInt] = Field(..., description="The duration of the request in milliseconds.")
-    http_status_code: StrictInt = Field(..., alias="httpStatusCode", description="The status code of the request.")
+    duration: Union[StrictFloat, StrictInt] = Field(description="The duration of the request in milliseconds.")
+    http_status_code: StrictInt = Field(description="The status code of the request.", alias="httpStatusCode")
     error_code:  Optional[StrictStr] = Field(None,alias="errorCode", description="Error code, if the request had a failure or error.") 
     sdk_language:  Optional[StrictStr] = Field(None,alias="sdkLanguage", description="The language of the SDK used.") 
     sdk_version:  Optional[StrictStr] = Field(None,alias="sdkVersion", description="The version of the SDK used.") 
     source_application:  Optional[StrictStr] = Field(None,alias="sourceApplication", description="The name of the application that made the request.") 
-    correlation_id: Optional[conlist(StrictStr)] = Field(None, alias="correlationId", description="The chain of requestIds preceding this request")
+    correlation_id: Optional[List[StrictStr]] = Field(default=None, description="The chain of requestIds preceding this request", alias="correlationId")
     impersonating_user:  Optional[StrictStr] = Field(None,alias="impersonatingUser", description="The impersonating user. Only present if the request is an impersonated one") 
-    links: Optional[conlist(Link)] = None
+    links: Optional[List[Link]] = None
     __properties = ["timestamp", "application", "id", "sessionId", "verb", "url", "domain", "user", "userType", "operation", "outcome", "duration", "httpStatusCode", "errorCode", "sdkLanguage", "sdkVersion", "sourceApplication", "correlationId", "impersonatingUser", "links"]
 
     class Config:
@@ -176,3 +178,5 @@ class RequestLog(BaseModel):
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+RequestLog.update_forward_refs()

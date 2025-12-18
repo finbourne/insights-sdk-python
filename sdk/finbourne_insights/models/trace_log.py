@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr 
 from finbourne_insights.models.link import Link
 
 class TraceLog(BaseModel):
@@ -27,12 +29,11 @@ class TraceLog(BaseModel):
     Holds metadata for a trace.  # noqa: E501
     """
     trace_id:  StrictStr = Field(...,alias="traceId", description="The identifier of the trace.") 
-    scope:  StrictStr = Field(...,alias="scope", description="The scope of the trace.") 
-    created_at: datetime = Field(..., alias="createdAt", description="The datetime at which the trace was created.")
+    created_at: datetime = Field(description="The datetime at which the trace was created.", alias="createdAt")
     user_id:  StrictStr = Field(...,alias="userId", description="The id of the user who created the trace.") 
     description:  Optional[StrictStr] = Field(None,alias="description", description="The description of the trace.") 
-    links: Optional[conlist(Link)] = None
-    __properties = ["traceId", "scope", "createdAt", "userId", "description", "links"]
+    links: Optional[List[Link]] = None
+    __properties = ["traceId", "createdAt", "userId", "description", "links"]
 
     class Config:
         """Pydantic configuration"""
@@ -96,10 +97,11 @@ class TraceLog(BaseModel):
 
         _obj = TraceLog.parse_obj({
             "trace_id": obj.get("traceId"),
-            "scope": obj.get("scope"),
             "created_at": obj.get("createdAt"),
             "user_id": obj.get("userId"),
             "description": obj.get("description"),
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+TraceLog.update_forward_refs()

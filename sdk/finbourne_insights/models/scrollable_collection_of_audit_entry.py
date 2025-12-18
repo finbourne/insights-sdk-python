@@ -18,15 +18,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, StrictStr, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_insights.models.audit_entry import AuditEntry
 
 class ScrollableCollectionOfAuditEntry(BaseModel):
     """
     ScrollableCollectionOfAuditEntry
     """
-    data: Optional[conlist(AuditEntry)] = None
+    data: Optional[List[AuditEntry]] = None
     state:  Optional[StrictStr] = Field(None,alias="state") 
     __properties = ["data", "state"]
 
@@ -95,3 +97,5 @@ class ScrollableCollectionOfAuditEntry(BaseModel):
             "state": obj.get("state")
         })
         return _obj
+
+ScrollableCollectionOfAuditEntry.update_forward_refs()

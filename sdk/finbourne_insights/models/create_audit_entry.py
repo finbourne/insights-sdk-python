@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_insights.models.audit_data import AuditData
 from finbourne_insights.models.audit_process import AuditProcess
 
@@ -27,8 +29,8 @@ class CreateAuditEntry(BaseModel):
     """
     Details to create an audit entry  # noqa: E501
     """
-    process: AuditProcess = Field(...)
-    data: AuditData = Field(...)
+    process: AuditProcess
+    data: AuditData
     __properties = ["process", "data"]
 
     class Config:
@@ -85,3 +87,5 @@ class CreateAuditEntry(BaseModel):
             "data": AuditData.from_dict(obj.get("data")) if obj.get("data") is not None else None
         })
         return _obj
+
+CreateAuditEntry.update_forward_refs()

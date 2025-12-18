@@ -18,21 +18,23 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_insights.models.link import Link
 
 class Response(BaseModel):
     """
     DTO of Finbourne.AspNetCore.Http.TrackingEntry.ResponseInformation.  # noqa: E501
     """
-    headers: Optional[Dict[str, conlist(StrictStr)]] = Field(None, description="The headers")
-    content_length: Optional[StrictInt] = Field(None, alias="contentLength", description="The actual length of the body, which may be larger than the data recorded in Finbourne.Insights.WebApi.Dtos.Response.Body  (e.g. if actual Body is large, or not convertible to a string)")
+    headers: Optional[Dict[str, List[StrictStr]]] = Field(default=None, description="The headers")
+    content_length: Optional[StrictInt] = Field(default=None, description="The actual length of the body, which may be larger than the data recorded in Finbourne.Insights.WebApi.Dtos.Response.Body (e.g. if actual Body is large, or not convertible to a string)", alias="contentLength")
     content_type:  Optional[StrictStr] = Field(None,alias="contentType", description="The content type") 
     body:  Optional[StrictStr] = Field(None,alias="body", description="The recorded content.") 
-    body_was_truncated: Optional[StrictBool] = Field(None, alias="bodyWasTruncated", description="Determines if the recorded body was truncated.")
-    status_code: Optional[StrictInt] = Field(None, alias="statusCode", description="Http Status Code of the request.")
-    links: Optional[conlist(Link)] = None
+    body_was_truncated: Optional[StrictBool] = Field(default=None, description="Determines if the recorded body was truncated.", alias="bodyWasTruncated")
+    status_code: Optional[StrictInt] = Field(default=None, description="Http Status Code of the request.", alias="statusCode")
+    links: Optional[List[Link]] = None
     __properties = ["headers", "contentLength", "contentType", "body", "bodyWasTruncated", "statusCode", "links"]
 
     class Config:
@@ -129,3 +131,5 @@ class Response(BaseModel):
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+Response.update_forward_refs()

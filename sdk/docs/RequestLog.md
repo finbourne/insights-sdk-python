@@ -28,9 +28,11 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.request_log import RequestLog
-from typing import Any, Dict, List, Optional, Union
-from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist, constr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 timestamp: datetime = # Replace with your value
 application: StrictStr = "example_application"
 id: StrictStr = "example_id"
@@ -49,9 +51,9 @@ error_code: Optional[StrictStr] = "example_error_code"
 sdk_language: Optional[StrictStr] = "example_sdk_language"
 sdk_version: Optional[StrictStr] = "example_sdk_version"
 source_application: Optional[StrictStr] = "example_source_application"
-correlation_id: Optional[conlist(StrictStr)] = # Replace with your value
+correlation_id: Optional[List[StrictStr]] = # Replace with your value
 impersonating_user: Optional[StrictStr] = "example_impersonating_user"
-links: Optional[conlist(Link)] = None
+links: Optional[List[Link]] = None
 request_log_instance = RequestLog(timestamp=timestamp, application=application, id=id, session_id=session_id, verb=verb, url=url, domain=domain, user=user, user_type=user_type, operation=operation, outcome=outcome, duration=duration, http_status_code=http_status_code, error_code=error_code, sdk_language=sdk_language, sdk_version=sdk_version, source_application=source_application, correlation_id=correlation_id, impersonating_user=impersonating_user, links=links)
 
 ```

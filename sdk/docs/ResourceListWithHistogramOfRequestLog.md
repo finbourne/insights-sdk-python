@@ -14,15 +14,17 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.resource_list_with_histogram_of_request_log import ResourceListWithHistogramOfRequestLog
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 histogram: Optional[Histogram] = None
-values: conlist(RequestLog) = # Replace with your value
+values: List[RequestLog]
 href: Optional[StrictStr] = "example_href"
 next_page: Optional[StrictStr] = "example_next_page"
 previous_page: Optional[StrictStr] = "example_previous_page"
-links: Optional[conlist(Link)] = None
+links: Optional[List[Link]] = None
 resource_list_with_histogram_of_request_log_instance = ResourceListWithHistogramOfRequestLog(histogram=histogram, values=values, href=href, next_page=next_page, previous_page=previous_page, links=links)
 
 ```

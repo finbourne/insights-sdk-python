@@ -45,6 +45,9 @@ from finbourne_insights.models.resource_list_with_histogram_of_request_log impor
 from finbourne_insights.models.resource_list_with_histogram_of_vendor_log import ResourceListWithHistogramOfVendorLog
 from finbourne_insights.models.response import Response
 from finbourne_insights.models.scrollable_collection_of_audit_entry import ScrollableCollectionOfAuditEntry
+from finbourne_insights.models.trace_diagram_edge import TraceDiagramEdge
+from finbourne_insights.models.trace_diagram_node import TraceDiagramNode
+from finbourne_insights.models.trace_diagram_response import TraceDiagramResponse
 from finbourne_insights.models.trace_event_log import TraceEventLog
 from finbourne_insights.models.trace_log import TraceLog
 from finbourne_insights.models.vendor_log import VendorLog
@@ -84,6 +87,9 @@ __all__ = [
     "ResourceListWithHistogramOfVendorLog",
     "Response",
     "ScrollableCollectionOfAuditEntry",
+    "TraceDiagramEdge",
+    "TraceDiagramNode",
+    "TraceDiagramResponse",
     "TraceEventLog",
     "TraceLog",
     "VendorLog",

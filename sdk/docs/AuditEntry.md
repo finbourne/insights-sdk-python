@@ -12,14 +12,16 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.audit_entry import AuditEntry
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist, constr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 id: StrictStr = "example_id"
 var_date: datetime = # Replace with your value
-process: AuditProcess = # Replace with your value
-data: AuditData = # Replace with your value
-notes: Optional[conlist(AuditEntryNote)] = None
+process: AuditProcess
+data: AuditData
+notes: Optional[List[AuditEntryNote]] = None
 audit_entry_instance = AuditEntry(id=id, var_date=var_date, process=process, data=data, notes=notes)
 
 ```

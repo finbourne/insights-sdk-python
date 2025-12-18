@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **authoritative_selector** | **str** | The selector that matched the access evaluation to provide a result. | [optional] 
 **resource_type** | **str** | The type of the resource that the access evaluation is for. | [optional] 
 **action** | **str** | The action key of the access evaluation. | [optional] 
-**resource** | **Dict[str, str]** | The ID of the resource that the access evaluation is for. If the ResourceID could not be converted to a dictionary, it will return a single-value dictionary with the key \&quot;resourceId\&quot;. | [optional] 
+**resource** | **Dict[str, Optional[str]]** | The ID of the resource that the access evaluation is for. If the ResourceID could not be converted to a dictionary, it will return a single-value dictionary with the key \&quot;resourceId\&quot;. | [optional] 
 **resource_from_effective_date** | **str** | The From effective date of the resource. | [optional] 
 **resource_to_effective_date** | **str** | The To effective date of the resource. | [optional] 
 **resource_from_as_at** | **str** | The From AsAt date of the resource. | [optional] 
@@ -31,9 +31,11 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.access_evaluation_log import AccessEvaluationLog
-from typing import Any, Dict, List, Optional, Union
-from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist, constr, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 timestamp: datetime = # Replace with your value
 application: StrictStr = "example_application"
 id: StrictStr = "example_id"
@@ -48,7 +50,7 @@ authoritative_policy_id: Optional[StrictStr] = "example_authoritative_policy_id"
 authoritative_selector: Optional[StrictStr] = "example_authoritative_selector"
 resource_type: Optional[StrictStr] = "example_resource_type"
 action: Optional[StrictStr] = "example_action"
-resource: Optional[Dict[str, StrictStr]] = # Replace with your value
+resource: Optional[Dict[str, Optional[StrictStr]]] = # Replace with your value
 resource_from_effective_date: Optional[StrictStr] = "example_resource_from_effective_date"
 resource_to_effective_date: Optional[StrictStr] = "example_resource_to_effective_date"
 resource_from_as_at: Optional[StrictStr] = "example_resource_from_as_at"
@@ -56,7 +58,7 @@ resource_to_as_at: Optional[StrictStr] = "example_resource_to_as_at"
 access_execution_time: Optional[StrictStr] = "example_access_execution_time"
 access_as_at_time: Optional[StrictStr] = "example_access_as_at_time"
 required_licence_policy_id: Optional[StrictStr] = "example_required_licence_policy_id"
-links: Optional[conlist(Link)] = None
+links: Optional[List[Link]] = None
 access_evaluation_log_instance = AccessEvaluationLog(timestamp=timestamp, application=application, id=id, request_id=request_id, session_id=session_id, user=user, user_type=user_type, duration=duration, result=result, authoritative_role_id=authoritative_role_id, authoritative_policy_id=authoritative_policy_id, authoritative_selector=authoritative_selector, resource_type=resource_type, action=action, resource=resource, resource_from_effective_date=resource_from_effective_date, resource_to_effective_date=resource_to_effective_date, resource_from_as_at=resource_from_as_at, resource_to_as_at=resource_to_as_at, access_execution_time=access_execution_time, access_as_at_time=access_as_at_time, required_licence_policy_id=required_licence_policy_id, links=links)
 
 ```

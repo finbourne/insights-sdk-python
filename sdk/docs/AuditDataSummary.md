@@ -9,8 +9,10 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.audit_data_summary import AuditDataSummary
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, StrictInt
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 count: Optional[StrictInt] = None
 count: Optional[StrictInt] = None

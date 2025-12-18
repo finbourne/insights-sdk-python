@@ -11,12 +11,14 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.vendor_response import VendorResponse
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist, constr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 id: StrictStr = "example_id"
 response: StrictStr = "example_response"
-links: Optional[conlist(Link)] = None
+links: Optional[List[Link]] = None
 vendor_response_instance = VendorResponse(id=id, response=response, links=links)
 
 ```

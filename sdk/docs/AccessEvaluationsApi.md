@@ -4,14 +4,14 @@ All URIs are relative to *https://fbn-prd.lusid.com/insights*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_access_evaluation_log**](AccessEvaluationsApi.md#get_access_evaluation_log) | **GET** /api/access/{id} | [EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation.  This endpoint will be deprecated in the near future.
+[**get_access_evaluation_log**](AccessEvaluationsApi.md#get_access_evaluation_log) | **GET** /api/access/{id} | [EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation. This endpoint will be deprecated in the near future.
 [**list_access_evaluation_logs**](AccessEvaluationsApi.md#list_access_evaluation_logs) | **GET** /api/access | [EARLY ACCESS] ListAccessEvaluationLogs: List the logs for access evaluations.
 
 
 # **get_access_evaluation_log**
 > AccessEvaluationLog get_access_evaluation_log(id)
 
-[EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation.  This endpoint will be deprecated in the near future.
+[EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation. This endpoint will be deprecated in the near future.
 
 ### Example
 
@@ -64,7 +64,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_access_evaluation_log(id, opts=opts)
 
-        # [EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation.  This endpoint will be deprecated in the near future.
+        # [EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation. This endpoint will be deprecated in the near future.
         api_response = api_instance.get_access_evaluation_log(id)
         pprint(api_response)
 
@@ -150,7 +150,7 @@ def main():
     api_instance = api_client_factory.build(AccessEvaluationsApi)
     start_at = '2013-10-20T19:20:30+01:00' # datetime | Start date from which point to fetch logs. (optional)
     end_at = '2013-10-20T19:20:30+01:00' # datetime | End date to which point to fetch logs. (optional)
-    filter = 'filter_example' # str | Expression to filter the result set. Read more about [ filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid). (optional)
+    filter = 'filter_example' # str | Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid). (optional)
     sort_by = 'sort_by_example' # str | Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName (optional)
     limit = 56 # int | When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000. (optional)
     page = 'page_example' # str | Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied. (optional)
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_at** | **datetime**| Start date from which point to fetch logs. | [optional] 
  **end_at** | **datetime**| End date to which point to fetch logs. | [optional] 
- **filter** | **str**| Expression to filter the result set. Read more about [ filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid). | [optional] 
+ **filter** | **str**| Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid). | [optional] 
  **sort_by** | **str**| Order the results by these fields. Use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName | [optional] 
  **limit** | **int**| When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000. | [optional] 
  **page** | **str**| Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied. | [optional] 

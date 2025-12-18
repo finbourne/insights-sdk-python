@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.scrollable_collection_of_audit_entry import ScrollableCollectionOfAuditEntry
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, StrictStr, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-data: Optional[conlist(AuditEntry)] = None
+data: Optional[List[AuditEntry]] = None
 state: Optional[StrictStr] = "example_state"
 scrollable_collection_of_audit_entry_instance = ScrollableCollectionOfAuditEntry(data=data, state=state)
 

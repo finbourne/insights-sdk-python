@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, conlist, constr 
 from finbourne_insights.models.audit_data import AuditData
 from finbourne_insights.models.audit_entry_note import AuditEntryNote
 from finbourne_insights.models.audit_process import AuditProcess
@@ -29,10 +31,10 @@ class AuditEntry(BaseModel):
     AuditEntry
     """
     id:  StrictStr = Field(...,alias="id") 
-    var_date: datetime = Field(..., alias="date")
-    process: AuditProcess = Field(...)
-    data: AuditData = Field(...)
-    notes: Optional[conlist(AuditEntryNote)] = None
+    var_date: datetime = Field(alias="date")
+    process: AuditProcess
+    data: AuditData
+    notes: Optional[List[AuditEntryNote]] = None
     __properties = ["id", "date", "process", "data", "notes"]
 
     class Config:
@@ -104,3 +106,5 @@ class AuditEntry(BaseModel):
             "notes": [AuditEntryNote.from_dict(_item) for _item in obj.get("notes")] if obj.get("notes") is not None else None
         })
         return _obj
+
+AuditEntry.update_forward_refs()

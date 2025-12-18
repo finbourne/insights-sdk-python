@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_insights.models.histogram import Histogram
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-buckets: Optional[conlist(Bucket)] = # Replace with your value
+buckets: Optional[List[Bucket]] = # Replace with your value
 histogram_instance = Histogram(buckets=buckets)
 
 ```

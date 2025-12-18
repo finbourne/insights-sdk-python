@@ -17,16 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictInt 
 
 class Bucket(BaseModel):
     """
     A single histogram bucket.  # noqa: E501
     """
-    start_time: Optional[datetime] = Field(None, alias="startTime", description="The bucket's start time as a DateTimeOffset.")
-    item_count: Optional[StrictInt] = Field(None, alias="itemCount", description="The number of items in the bucket.")
+    start_time: Optional[datetime] = Field(default=None, description="The bucket's start time as a DateTimeOffset.", alias="startTime")
+    item_count: Optional[StrictInt] = Field(default=None, description="The number of items in the bucket.", alias="itemCount")
     __properties = ["startTime", "itemCount"]
 
     class Config:
@@ -77,3 +79,5 @@ class Bucket(BaseModel):
             "item_count": obj.get("itemCount")
         })
         return _obj
+
+Bucket.update_forward_refs()
