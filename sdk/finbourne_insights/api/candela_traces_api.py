@@ -63,7 +63,7 @@ class CandelaTracesApi:
 
     @validate_arguments
     def get_trace_diagram(self, trace_id : Annotated[StrictStr, Field(..., description="The identifier of the trace.")], async_req: Optional[bool]=None, **kwargs) -> Union[TraceDiagramResponse, Awaitable[TraceDiagramResponse]]:  # noqa: E501
-        """[EXPERIMENTAL] GetTraceDiagram: Get the diagram representation for a specific trace.  # noqa: E501
+        """[EARLY ACCESS] GetTraceDiagram: Get the diagram representation for a specific trace.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -93,7 +93,7 @@ class CandelaTracesApi:
 
     @validate_arguments
     def get_trace_diagram_with_http_info(self, trace_id : Annotated[StrictStr, Field(..., description="The identifier of the trace.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] GetTraceDiagram: Get the diagram representation for a specific trace.  # noqa: E501
+        """[EARLY ACCESS] GetTraceDiagram: Get the diagram representation for a specific trace.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -213,7 +213,7 @@ class CandelaTracesApi:
 
     @validate_arguments
     def get_trace_log(self, trace_id : Annotated[StrictStr, Field(..., description="The identifier of the request to obtain the log for.")], async_req: Optional[bool]=None, **kwargs) -> Union[TraceLog, Awaitable[TraceLog]]:  # noqa: E501
-        """[EXPERIMENTAL] GetTraceLog: Get the log for a specific trace.  # noqa: E501
+        """[EARLY ACCESS] GetTraceLog: Get the log for a specific trace.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -243,7 +243,7 @@ class CandelaTracesApi:
 
     @validate_arguments
     def get_trace_log_with_http_info(self, trace_id : Annotated[StrictStr, Field(..., description="The identifier of the request to obtain the log for.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] GetTraceLog: Get the log for a specific trace.  # noqa: E501
+        """[EARLY ACCESS] GetTraceLog: Get the log for a specific trace.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -363,7 +363,7 @@ class CandelaTracesApi:
 
     @validate_arguments
     def list_trace_event_logs(self, trace_id : Annotated[StrictStr, Field(..., description="The identifier of the request to obtain the log for.")], page : Annotated[Optional[StrictStr], Field( description="")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfTraceEventLog, Awaitable[ResourceListOfTraceEventLog]]:  # noqa: E501
-        """[EXPERIMENTAL] ListTraceEventLogs: Get the trace event logs for a specific trace.  # noqa: E501
+        """[EARLY ACCESS] ListTraceEventLogs: Get the trace event logs for a specific trace.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -395,7 +395,7 @@ class CandelaTracesApi:
 
     @validate_arguments
     def list_trace_event_logs_with_http_info(self, trace_id : Annotated[StrictStr, Field(..., description="The identifier of the request to obtain the log for.")], page : Annotated[Optional[StrictStr], Field( description="")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] ListTraceEventLogs: Get the trace event logs for a specific trace.  # noqa: E501
+        """[EARLY ACCESS] ListTraceEventLogs: Get the trace event logs for a specific trace.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -521,7 +521,7 @@ class CandelaTracesApi:
 
     @validate_arguments
     def list_trace_logs(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[StrictInt], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded pagwwwwe string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfTraceLog, Awaitable[ResourceListOfTraceLog]]:  # noqa: E501
-        """[EXPERIMENTAL] ListTraceLogs: Get the logs for traces.  # noqa: E501
+        """[EARLY ACCESS] ListTraceLogs: Get the logs for traces.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -557,7 +557,7 @@ class CandelaTracesApi:
 
     @validate_arguments
     def list_trace_logs_with_http_info(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about [filtering results from LUSID](https://support.lusid.com/filtering-results-from-lusid).")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Order the results by these fields. Use the '-' sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName")] = None, limit : Annotated[Optional[StrictInt], Field(description="When paginating, only return this number of records. The minimum value is 0 and the maximum is 10000.")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded pagwwwwe string returned from a previous search result that will retrieve the next page of data. When this field is supplied, filter and sortby fields should not be supplied.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] ListTraceLogs: Get the logs for traces.  # noqa: E501
+        """[EARLY ACCESS] ListTraceLogs: Get the logs for traces.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True

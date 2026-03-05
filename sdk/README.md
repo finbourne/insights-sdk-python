@@ -11,10 +11,10 @@ Class | Method | HTTP request | Description
 *AuditingApi* | [**create_entry**](docs/AuditingApi.md#create_entry) | **POST** /api/auditing/entries | [EARLY ACCESS] CreateEntry: Create (persist) and audit entry..
 *AuditingApi* | [**get_processes**](docs/AuditingApi.md#get_processes) | **GET** /api/auditing/processes | [EARLY ACCESS] GetProcesses: Get the latest audit entry for each process.
 *AuditingApi* | [**list_entries**](docs/AuditingApi.md#list_entries) | **GET** /api/auditing/entries | [EARLY ACCESS] ListEntries: Get the audit entries.
-*CandelaTracesApi* | [**get_trace_diagram**](docs/CandelaTracesApi.md#get_trace_diagram) | **GET** /api/candelatraces/{traceId}/diagram | [EXPERIMENTAL] GetTraceDiagram: Get the diagram representation for a specific trace.
-*CandelaTracesApi* | [**get_trace_log**](docs/CandelaTracesApi.md#get_trace_log) | **GET** /api/candelatraces/{traceId} | [EXPERIMENTAL] GetTraceLog: Get the log for a specific trace.
-*CandelaTracesApi* | [**list_trace_event_logs**](docs/CandelaTracesApi.md#list_trace_event_logs) | **GET** /api/candelatraces/{traceId}/events | [EXPERIMENTAL] ListTraceEventLogs: Get the trace event logs for a specific trace.
-*CandelaTracesApi* | [**list_trace_logs**](docs/CandelaTracesApi.md#list_trace_logs) | **GET** /api/candelatraces | [EXPERIMENTAL] ListTraceLogs: Get the logs for traces.
+*CandelaTracesApi* | [**get_trace_diagram**](docs/CandelaTracesApi.md#get_trace_diagram) | **GET** /api/candelatraces/{traceId}/diagram | [EARLY ACCESS] GetTraceDiagram: Get the diagram representation for a specific trace.
+*CandelaTracesApi* | [**get_trace_log**](docs/CandelaTracesApi.md#get_trace_log) | **GET** /api/candelatraces/{traceId} | [EARLY ACCESS] GetTraceLog: Get the log for a specific trace.
+*CandelaTracesApi* | [**list_trace_event_logs**](docs/CandelaTracesApi.md#list_trace_event_logs) | **GET** /api/candelatraces/{traceId}/events | [EARLY ACCESS] ListTraceEventLogs: Get the trace event logs for a specific trace.
+*CandelaTracesApi* | [**list_trace_logs**](docs/CandelaTracesApi.md#list_trace_logs) | **GET** /api/candelatraces | [EARLY ACCESS] ListTraceLogs: Get the logs for traces.
 *RequestsApi* | [**get_request**](docs/RequestsApi.md#get_request) | **GET** /api/requests/{id}/request | GetRequest: Get the request content for a specific API request.
 *RequestsApi* | [**get_request_log**](docs/RequestsApi.md#get_request_log) | **GET** /api/requests/{id} | GetRequestLog: Get the log for a specific API request.
 *RequestsApi* | [**get_response**](docs/RequestsApi.md#get_response) | **GET** /api/requests/{id}/response | GetResponse: Get the response for a specific API request.

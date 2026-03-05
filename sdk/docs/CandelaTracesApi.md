@@ -4,16 +4,16 @@ All URIs are relative to *https://fbn-prd.lusid.com/insights*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_trace_diagram**](CandelaTracesApi.md#get_trace_diagram) | **GET** /api/candelatraces/{traceId}/diagram | [EXPERIMENTAL] GetTraceDiagram: Get the diagram representation for a specific trace.
-[**get_trace_log**](CandelaTracesApi.md#get_trace_log) | **GET** /api/candelatraces/{traceId} | [EXPERIMENTAL] GetTraceLog: Get the log for a specific trace.
-[**list_trace_event_logs**](CandelaTracesApi.md#list_trace_event_logs) | **GET** /api/candelatraces/{traceId}/events | [EXPERIMENTAL] ListTraceEventLogs: Get the trace event logs for a specific trace.
-[**list_trace_logs**](CandelaTracesApi.md#list_trace_logs) | **GET** /api/candelatraces | [EXPERIMENTAL] ListTraceLogs: Get the logs for traces.
+[**get_trace_diagram**](CandelaTracesApi.md#get_trace_diagram) | **GET** /api/candelatraces/{traceId}/diagram | [EARLY ACCESS] GetTraceDiagram: Get the diagram representation for a specific trace.
+[**get_trace_log**](CandelaTracesApi.md#get_trace_log) | **GET** /api/candelatraces/{traceId} | [EARLY ACCESS] GetTraceLog: Get the log for a specific trace.
+[**list_trace_event_logs**](CandelaTracesApi.md#list_trace_event_logs) | **GET** /api/candelatraces/{traceId}/events | [EARLY ACCESS] ListTraceEventLogs: Get the trace event logs for a specific trace.
+[**list_trace_logs**](CandelaTracesApi.md#list_trace_logs) | **GET** /api/candelatraces | [EARLY ACCESS] ListTraceLogs: Get the logs for traces.
 
 
 # **get_trace_diagram**
 > TraceDiagramResponse get_trace_diagram(trace_id)
 
-[EXPERIMENTAL] GetTraceDiagram: Get the diagram representation for a specific trace.
+[EARLY ACCESS] GetTraceDiagram: Get the diagram representation for a specific trace.
 
 ### Example
 
@@ -66,7 +66,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_trace_diagram(trace_id, opts=opts)
 
-        # [EXPERIMENTAL] GetTraceDiagram: Get the diagram representation for a specific trace.
+        # [EARLY ACCESS] GetTraceDiagram: Get the diagram representation for a specific trace.
         api_response = api_instance.get_trace_diagram(trace_id)
         pprint(api_response)
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 # **get_trace_log**
 > TraceLog get_trace_log(trace_id)
 
-[EXPERIMENTAL] GetTraceLog: Get the log for a specific trace.
+[EARLY ACCESS] GetTraceLog: Get the log for a specific trace.
 
 ### Example
 
@@ -156,7 +156,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_trace_log(trace_id, opts=opts)
 
-        # [EXPERIMENTAL] GetTraceLog: Get the log for a specific trace.
+        # [EARLY ACCESS] GetTraceLog: Get the log for a specific trace.
         api_response = api_instance.get_trace_log(trace_id)
         pprint(api_response)
 
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 # **list_trace_event_logs**
 > ResourceListOfTraceEventLog list_trace_event_logs(trace_id, page=page)
 
-[EXPERIMENTAL] ListTraceEventLogs: Get the trace event logs for a specific trace.
+[EARLY ACCESS] ListTraceEventLogs: Get the trace event logs for a specific trace.
 
 ### Example
 
@@ -247,7 +247,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.list_trace_event_logs(trace_id, page=page, opts=opts)
 
-        # [EXPERIMENTAL] ListTraceEventLogs: Get the trace event logs for a specific trace.
+        # [EARLY ACCESS] ListTraceEventLogs: Get the trace event logs for a specific trace.
         api_response = api_instance.list_trace_event_logs(trace_id, page=page)
         pprint(api_response)
 
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 # **list_trace_logs**
 > ResourceListOfTraceLog list_trace_logs(filter=filter, sort_by=sort_by, limit=limit, page=page)
 
-[EXPERIMENTAL] ListTraceLogs: Get the logs for traces.
+[EARLY ACCESS] ListTraceLogs: Get the logs for traces.
 
 ### Example
 
@@ -341,7 +341,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.list_trace_logs(filter=filter, sort_by=sort_by, limit=limit, page=page, opts=opts)
 
-        # [EXPERIMENTAL] ListTraceLogs: Get the logs for traces.
+        # [EARLY ACCESS] ListTraceLogs: Get the logs for traces.
         api_response = api_instance.list_trace_logs(filter=filter, sort_by=sort_by, limit=limit, page=page)
         pprint(api_response)
 
