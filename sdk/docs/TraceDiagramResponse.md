@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **nodes** | [**List[TraceDiagramNode]**](TraceDiagramNode.md) | The nodes that make up the diagram. | [optional] 
 **edges** | [**List[TraceDiagramEdge]**](TraceDiagramEdge.md) | The edges that connect the nodes in the diagram. | [optional] 
+**is_possibly_incomplete** | **bool** | Whether detected retrieval or diagram degradation means some events may not be shown. | [optional] 
 ## Example
 
 ```python
@@ -17,7 +18,9 @@ from datetime import datetime
 
 nodes: Optional[List[TraceDiagramNode]] = # Replace with your value
 edges: Optional[List[TraceDiagramEdge]] = # Replace with your value
-trace_diagram_response_instance = TraceDiagramResponse(nodes=nodes, edges=edges)
+is_possibly_incomplete: Optional[StrictBool] = # Replace with your value
+is_possibly_incomplete:Optional[StrictBool] = None
+trace_diagram_response_instance = TraceDiagramResponse(nodes=nodes, edges=edges, is_possibly_incomplete=is_possibly_incomplete)
 
 ```
 

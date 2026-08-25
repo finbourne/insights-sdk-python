@@ -38,8 +38,9 @@ class TraceEventLog(BaseModel):
     agent_code:  StrictStr = Field(...,alias="agentCode", description="The code identifier of the agent currently being interacted with") 
     agent_version: StrictInt = Field(description="The version of the circuit in which the trace event occurred.", alias="agentVersion")
     node_id:  StrictStr = Field(...,alias="nodeId", description="The ID of the circuit's node at which the trace event occured.") 
+    row_id:  Optional[StrictStr] = Field(None,alias="rowId", description="An opaque identifier for comparing complete trace event rows.") 
     links: Optional[List[Link]] = None
-    __properties = ["traceEventId", "traceId", "createdAt", "eventType", "origin", "content", "agentScope", "agentCode", "agentVersion", "nodeId", "links"]
+    __properties = ["traceEventId", "traceId", "createdAt", "eventType", "origin", "content", "agentScope", "agentCode", "agentVersion", "nodeId", "rowId", "links"]
 
     class Config:
         """Pydantic configuration"""
@@ -80,6 +81,11 @@ class TraceEventLog(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['links'] = _items
+        # set to None if row_id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.row_id is None and "row_id" in self.__fields_set__:
+            _dict['rowId'] = None
+
         # set to None if links (nullable) is None
         # and __fields_set__ contains the field
         if self.links is None and "links" in self.__fields_set__:
@@ -107,6 +113,7 @@ class TraceEventLog(BaseModel):
             "agent_code": obj.get("agentCode"),
             "agent_version": obj.get("agentVersion"),
             "node_id": obj.get("nodeId"),
+            "row_id": obj.get("rowId"),
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj

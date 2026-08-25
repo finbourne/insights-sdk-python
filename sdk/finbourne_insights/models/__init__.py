@@ -24,20 +24,37 @@ from finbourne_insights.models.audit_entry import AuditEntry
 from finbourne_insights.models.audit_entry_note import AuditEntryNote
 from finbourne_insights.models.audit_process import AuditProcess
 from finbourne_insights.models.audit_process_summary import AuditProcessSummary
+from finbourne_insights.models.boolean_comparator import BooleanComparator
 from finbourne_insights.models.bucket import Bucket
 from finbourne_insights.models.create_audit_entry import CreateAuditEntry
+from finbourne_insights.models.date_comparator import DateComparator
 from finbourne_insights.models.histogram import Histogram
 from finbourne_insights.models.id_selector_definition import IdSelectorDefinition
 from finbourne_insights.models.identifier_part_schema import IdentifierPartSchema
+from finbourne_insights.models.identity_metrics_data_set import IdentityMetricsDataSet
+from finbourne_insights.models.insights_filter import InsightsFilter
 from finbourne_insights.models.link import Link
 from finbourne_insights.models.lusid_problem_details import LusidProblemDetails
 from finbourne_insights.models.lusid_validation_problem_details import LusidValidationProblemDetails
+from finbourne_insights.models.metric_data_set_failure import MetricDataSetFailure
+from finbourne_insights.models.metrics_response import MetricsResponse
+from finbourne_insights.models.numeric_comparator import NumericComparator
 from finbourne_insights.models.problem_details import ProblemDetails
+from finbourne_insights.models.queried_request_log import QueriedRequestLog
+from finbourne_insights.models.query_request_logs_request import QueryRequestLogsRequest
+from finbourne_insights.models.queryable_log_field import QueryableLogField
+from finbourne_insights.models.queryable_log_type import QueryableLogType
+from finbourne_insights.models.relative_boundary import RelativeBoundary
+from finbourne_insights.models.relative_offset import RelativeOffset
 from finbourne_insights.models.request import Request
 from finbourne_insights.models.request_log import RequestLog
+from finbourne_insights.models.requests_per_minute_bucket import RequestsPerMinuteBucket
+from finbourne_insights.models.requests_per_minute_data_set import RequestsPerMinuteDataSet
 from finbourne_insights.models.resource import Resource
 from finbourne_insights.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
 from finbourne_insights.models.resource_list_of_audit_process_summary import ResourceListOfAuditProcessSummary
+from finbourne_insights.models.resource_list_of_queried_request_log import ResourceListOfQueriedRequestLog
+from finbourne_insights.models.resource_list_of_queryable_log_type import ResourceListOfQueryableLogType
 from finbourne_insights.models.resource_list_of_trace_event_log import ResourceListOfTraceEventLog
 from finbourne_insights.models.resource_list_of_trace_log import ResourceListOfTraceLog
 from finbourne_insights.models.resource_list_with_histogram_of_access_evaluation_log import ResourceListWithHistogramOfAccessEvaluationLog
@@ -45,6 +62,12 @@ from finbourne_insights.models.resource_list_with_histogram_of_request_log impor
 from finbourne_insights.models.resource_list_with_histogram_of_vendor_log import ResourceListWithHistogramOfVendorLog
 from finbourne_insights.models.response import Response
 from finbourne_insights.models.scrollable_collection_of_audit_entry import ScrollableCollectionOfAuditEntry
+from finbourne_insights.models.service_endpoint_duration import ServiceEndpointDuration
+from finbourne_insights.models.service_endpoint_durations24h_data_set import ServiceEndpointDurations24hDataSet
+from finbourne_insights.models.service_requests import ServiceRequests
+from finbourne_insights.models.service_requests24h_data_set import ServiceRequests24hDataSet
+from finbourne_insights.models.text_comparator import TextComparator
+from finbourne_insights.models.time_range import TimeRange
 from finbourne_insights.models.trace_diagram_edge import TraceDiagramEdge
 from finbourne_insights.models.trace_diagram_node import TraceDiagramNode
 from finbourne_insights.models.trace_diagram_response import TraceDiagramResponse
@@ -66,20 +89,37 @@ __all__ = [
     "AuditEntryNote",
     "AuditProcess",
     "AuditProcessSummary",
+    "BooleanComparator",
     "Bucket",
     "CreateAuditEntry",
+    "DateComparator",
     "Histogram",
     "IdSelectorDefinition",
     "IdentifierPartSchema",
+    "IdentityMetricsDataSet",
+    "InsightsFilter",
     "Link",
     "LusidProblemDetails",
     "LusidValidationProblemDetails",
+    "MetricDataSetFailure",
+    "MetricsResponse",
+    "NumericComparator",
     "ProblemDetails",
+    "QueriedRequestLog",
+    "QueryRequestLogsRequest",
+    "QueryableLogField",
+    "QueryableLogType",
+    "RelativeBoundary",
+    "RelativeOffset",
     "Request",
     "RequestLog",
+    "RequestsPerMinuteBucket",
+    "RequestsPerMinuteDataSet",
     "Resource",
     "ResourceListOfAccessControlledResource",
     "ResourceListOfAuditProcessSummary",
+    "ResourceListOfQueriedRequestLog",
+    "ResourceListOfQueryableLogType",
     "ResourceListOfTraceEventLog",
     "ResourceListOfTraceLog",
     "ResourceListWithHistogramOfAccessEvaluationLog",
@@ -87,6 +127,12 @@ __all__ = [
     "ResourceListWithHistogramOfVendorLog",
     "Response",
     "ScrollableCollectionOfAuditEntry",
+    "ServiceEndpointDuration",
+    "ServiceEndpointDurations24hDataSet",
+    "ServiceRequests",
+    "ServiceRequests24hDataSet",
+    "TextComparator",
+    "TimeRange",
     "TraceDiagramEdge",
     "TraceDiagramNode",
     "TraceDiagramResponse",

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **agent_code** | **str** | The code identifier of the agent currently being interacted with | 
 **agent_version** | **int** | The version of the circuit in which the trace event occurred. | 
 **node_id** | **str** | The ID of the circuit&#39;s node at which the trace event occured. | 
+**row_id** | **str** | An opaque identifier for comparing complete trace event rows. | [optional] 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
 ## Example
 
@@ -35,8 +36,9 @@ agent_code: StrictStr = "example_agent_code"
 agent_version: StrictInt = # Replace with your value
 agent_version: StrictInt = 42
 node_id: StrictStr = "example_node_id"
+row_id: Optional[StrictStr] = "example_row_id"
 links: Optional[List[Link]] = None
-trace_event_log_instance = TraceEventLog(trace_event_id=trace_event_id, trace_id=trace_id, created_at=created_at, event_type=event_type, origin=origin, content=content, agent_scope=agent_scope, agent_code=agent_code, agent_version=agent_version, node_id=node_id, links=links)
+trace_event_log_instance = TraceEventLog(trace_event_id=trace_event_id, trace_id=trace_id, created_at=created_at, event_type=event_type, origin=origin, content=content, agent_scope=agent_scope, agent_code=agent_code, agent_version=agent_version, node_id=node_id, row_id=row_id, links=links)
 
 ```
 
