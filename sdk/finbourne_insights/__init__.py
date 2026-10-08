@@ -39,6 +39,7 @@ from finbourne_insights.models.access_controlled_action import AccessControlledA
 from finbourne_insights.models.access_controlled_resource import AccessControlledResource
 from finbourne_insights.models.access_evaluation_log import AccessEvaluationLog
 from finbourne_insights.models.action_id import ActionId
+from finbourne_insights.models.api_endpoint import ApiEndpoint
 from finbourne_insights.models.audit_data import AuditData
 from finbourne_insights.models.audit_data_summary import AuditDataSummary
 from finbourne_insights.models.audit_entry import AuditEntry
@@ -83,6 +84,7 @@ from finbourne_insights.models.resource_list_with_histogram_of_request_log impor
 from finbourne_insights.models.resource_list_with_histogram_of_vendor_log import ResourceListWithHistogramOfVendorLog
 from finbourne_insights.models.response import Response
 from finbourne_insights.models.scrollable_collection_of_audit_entry import ScrollableCollectionOfAuditEntry
+from finbourne_insights.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne_insights.models.service_endpoint_duration import ServiceEndpointDuration
 from finbourne_insights.models.service_endpoint_durations24h_data_set import ServiceEndpointDurations24hDataSet
 from finbourne_insights.models.service_requests import ServiceRequests
@@ -124,6 +126,7 @@ __all__ = [
     "AccessControlledResource",
     "AccessEvaluationLog",
     "ActionId",
+    "ApiEndpoint",
     "AuditData",
     "AuditDataSummary",
     "AuditEntry",
@@ -168,6 +171,7 @@ __all__ = [
     "ResourceListWithHistogramOfVendorLog",
     "Response",
     "ScrollableCollectionOfAuditEntry",
+    "ServiceApiEndpoints",
     "ServiceEndpointDuration",
     "ServiceEndpointDurations24hDataSet",
     "ServiceRequests",

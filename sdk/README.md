@@ -8,6 +8,7 @@ Class | Method | HTTP request | Description
 *AccessEvaluationsApi* | [**get_access_evaluation_log**](docs/AccessEvaluationsApi.md#get_access_evaluation_log) | **GET** /api/access/{id} | [EARLY ACCESS] GetAccessEvaluationLog: Get the log for a specific access evaluation. This endpoint will be deprecated in the near future.
 *AccessEvaluationsApi* | [**list_access_evaluation_logs**](docs/AccessEvaluationsApi.md#list_access_evaluation_logs) | **GET** /api/access | [EARLY ACCESS] ListAccessEvaluationLogs: List the logs for access evaluations.
 *ApplicationMetadataApi* | [**list_access_controlled_resources**](docs/ApplicationMetadataApi.md#list_access_controlled_resources) | **GET** /api/metadata/access/resources | ListAccessControlledResources: Get resources available for access control
+*ApplicationMetadataApi* | [**list_api_endpoints**](docs/ApplicationMetadataApi.md#list_api_endpoints) | **GET** /api/metadata/endpoints | ListApiEndpoints: Get the API endpoints available
 *AuditingApi* | [**create_entry**](docs/AuditingApi.md#create_entry) | **POST** /api/auditing/entries | [EARLY ACCESS] CreateEntry: Create (persist) and audit entry..
 *AuditingApi* | [**get_processes**](docs/AuditingApi.md#get_processes) | **GET** /api/auditing/processes | [EARLY ACCESS] GetProcesses: Get the latest audit entry for each process.
 *AuditingApi* | [**list_entries**](docs/AuditingApi.md#list_entries) | **GET** /api/auditing/entries | [EARLY ACCESS] ListEntries: Get the audit entries.
@@ -35,6 +36,7 @@ Class | Method | HTTP request | Description
  - [AccessControlledResource](docs/AccessControlledResource.md)
  - [AccessEvaluationLog](docs/AccessEvaluationLog.md)
  - [ActionId](docs/ActionId.md)
+ - [ApiEndpoint](docs/ApiEndpoint.md)
  - [AuditData](docs/AuditData.md)
  - [AuditDataSummary](docs/AuditDataSummary.md)
  - [AuditEntry](docs/AuditEntry.md)
@@ -79,6 +81,7 @@ Class | Method | HTTP request | Description
  - [ResourceListWithHistogramOfVendorLog](docs/ResourceListWithHistogramOfVendorLog.md)
  - [Response](docs/Response.md)
  - [ScrollableCollectionOfAuditEntry](docs/ScrollableCollectionOfAuditEntry.md)
+ - [ServiceApiEndpoints](docs/ServiceApiEndpoints.md)
  - [ServiceEndpointDuration](docs/ServiceEndpointDuration.md)
  - [ServiceEndpointDurations24hDataSet](docs/ServiceEndpointDurations24hDataSet.md)
  - [ServiceRequests](docs/ServiceRequests.md)
