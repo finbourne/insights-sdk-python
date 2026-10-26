@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **supported_operations** | **List[str]** | The comparator operations available for this field. Empty when the field is not filterable. | 
 **filterable** | **bool** | Whether the field can be used in a filter. | [optional] 
 **always_returned** | **bool** | Whether the field is always returned (and therefore need not be requested). | [optional] 
+**available_values** | [**List[AvailableValue]**](AvailableValue.md) | The values known to be valid for this field, which a UI can offer when filtering on it. Null when the field has no known set of values. The list is not exhaustive: other values may still be filtered on. | [optional] 
 ## Example
 
 ```python
@@ -25,7 +26,8 @@ filterable: Optional[StrictBool] = # Replace with your value
 filterable:Optional[StrictBool] = None
 always_returned: Optional[StrictBool] = # Replace with your value
 always_returned:Optional[StrictBool] = None
-queryable_log_field_instance = QueryableLogField(name=name, data_type=data_type, supported_operations=supported_operations, filterable=filterable, always_returned=always_returned)
+available_values: Optional[List[AvailableValue]] = # Replace with your value
+queryable_log_field_instance = QueryableLogField(name=name, data_type=data_type, supported_operations=supported_operations, filterable=filterable, always_returned=always_returned, available_values=available_values)
 
 ```
 

@@ -22,6 +22,7 @@ from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
 from typing_extensions import Annotated
 from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+from finbourne_insights.models.available_value import AvailableValue
 
 class QueryableLogField(BaseModel):
     """
@@ -32,7 +33,8 @@ class QueryableLogField(BaseModel):
     supported_operations: List[StrictStr] = Field(description="The comparator operations available for this field. Empty when the field is not filterable.", alias="supportedOperations")
     filterable: Optional[StrictBool] = Field(default=None, description="Whether the field can be used in a filter.")
     always_returned: Optional[StrictBool] = Field(default=None, description="Whether the field is always returned (and therefore need not be requested).", alias="alwaysReturned")
-    __properties = ["name", "dataType", "supportedOperations", "filterable", "alwaysReturned"]
+    available_values: Optional[List[AvailableValue]] = Field(default=None, description="The values known to be valid for this field, which a UI can offer when filtering on it. Null when the field has no known set of values. The list is not exhaustive: other values may still be filtered on.", alias="availableValues")
+    __properties = ["name", "dataType", "supportedOperations", "filterable", "alwaysReturned", "availableValues"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,6 +68,18 @@ class QueryableLogField(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in available_values (list)
+        _items = []
+        if self.available_values:
+            for _item in self.available_values:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['availableValues'] = _items
+        # set to None if available_values (nullable) is None
+        # and __fields_set__ contains the field
+        if self.available_values is None and "available_values" in self.__fields_set__:
+            _dict['availableValues'] = None
+
         return _dict
 
     @classmethod
@@ -82,7 +96,8 @@ class QueryableLogField(BaseModel):
             "data_type": obj.get("dataType"),
             "supported_operations": obj.get("supportedOperations"),
             "filterable": obj.get("filterable"),
-            "always_returned": obj.get("alwaysReturned")
+            "always_returned": obj.get("alwaysReturned"),
+            "available_values": [AvailableValue.from_dict(_item) for _item in obj.get("availableValues")] if obj.get("availableValues") is not None else None
         })
         return _obj
 

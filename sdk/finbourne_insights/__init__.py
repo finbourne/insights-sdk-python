@@ -46,6 +46,7 @@ from finbourne_insights.models.audit_entry import AuditEntry
 from finbourne_insights.models.audit_entry_note import AuditEntryNote
 from finbourne_insights.models.audit_process import AuditProcess
 from finbourne_insights.models.audit_process_summary import AuditProcessSummary
+from finbourne_insights.models.available_value import AvailableValue
 from finbourne_insights.models.boolean_comparator import BooleanComparator
 from finbourne_insights.models.bucket import Bucket
 from finbourne_insights.models.create_audit_entry import CreateAuditEntry
@@ -133,6 +134,7 @@ __all__ = [
     "AuditEntryNote",
     "AuditProcess",
     "AuditProcessSummary",
+    "AvailableValue",
     "BooleanComparator",
     "Bucket",
     "CreateAuditEntry",

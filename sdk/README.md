@@ -43,6 +43,7 @@ Class | Method | HTTP request | Description
  - [AuditEntryNote](docs/AuditEntryNote.md)
  - [AuditProcess](docs/AuditProcess.md)
  - [AuditProcessSummary](docs/AuditProcessSummary.md)
+ - [AvailableValue](docs/AvailableValue.md)
  - [BooleanComparator](docs/BooleanComparator.md)
  - [Bucket](docs/Bucket.md)
  - [CreateAuditEntry](docs/CreateAuditEntry.md)
